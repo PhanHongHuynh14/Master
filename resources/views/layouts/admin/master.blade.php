@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
@@ -47,84 +48,6 @@
  </div>
 
 
-<style>
-    .gol {
-        font-size: 20px;
-        text-align: center;
-        padding-top: 10px;
-    }
-    .header{
-        font-size: 20px;
-        text-align: center;
-        padding-top: 10px;
-    }
-    .headerbg{
-        background: #c0f6fa;
-    }
-    .btn{
-        position: relative;
-    }
-    .btn-new{
-        background: #0d6efd;
-        color: #ffffff;
-        float:right;
-        left: 0;
-        bottom: 50px;
-        width: 110px;
-        border-radius: 5px
-    }
-    .btn-new:hover{
-        background: #0d6efd;
-        border: none;
-        color: #ffffff;
-    }
-    .pagination{
-        align-items: center;
-        display: flex;
-        justify-content: center;
-    }
-    .page{
-        margin-top: 100px;
-    }
-    .footer{
-        font-size: 20px;
-        max-width: 300;
-        background: #c0f6fa;
-        text-align: center;
-        height: 50px;
-        padding: 10px
-    }
-    h2{
-    padding-left: 16px;
-        margin: -4px 0 4px 0;
-        width: 204px;
-    }
-    .menu{
-        height: 100%;
-        width: 100%;
-        background-color: #E7E9EB;
-        overflow-y: scroll;
-        overflow-x: hidden;
-        padding-top: 20px;
-        display: block;
-        font-family: Verdana,sans-serif;
-        font-size: 15px;
-        line-height: 1.5;
-    }
-    a{
-        font-family: "Segoe UI",Arial,sans-serif;
-        text-decoration: none;
-        display: block;
-        padding: 2px 1px 1px 16px;
-        color: inherit;
-        background-color: transparent;
-        box-sizing: inherit;
-    }
-    a:hover{
-        color: #000000;
-        background-color: #CCCCCC;
-    }
-</style>
 
 
 

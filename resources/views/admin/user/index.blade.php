@@ -3,7 +3,7 @@
 <div class="col-md-9">
     <div>
         <h1>UserList</h1>
-        <a href="login" class="btn btn-new">+Addnew</a>
+        <a href="" class="btn btn-new">+Addnew</a>
     </div>
     <table class="table">
         <thead>
