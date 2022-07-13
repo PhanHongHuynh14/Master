@@ -127,11 +127,6 @@
         </ul>
       </nav>
 <style>
-    .container{
-  }
-  .table{
-    color:
-  }
   .btn{
     position: relative;
   }
