@@ -47,17 +47,34 @@
   </div>
 </nav> --}}
 <div class="container">
-    <div class="row" style="margin-top:8px">
+    <div class="row headerbg">
         <div class="col-md-3">
-            <ul>System
-                <li>User management</li>
-                <li>Role management</li>
-                <li>Permissin management</li>
-            </ul>
-            <ul>Catalog
-            <li>Prodct management</li>
-            <li>Category management</li>
-            </ul>
+            <h1 class="gol">GOL SOFT</h1>
+        </div>
+        <div class="col-md-9">
+            <h1 class="header">HEADER</h1>
+        </div>
+    </div>
+    <div class="row" style="margin-top:8px">
+        <div class="col-md-3 ">
+            <div class="menu">
+                <h2>
+                  <span>
+                    System
+                  </span>
+                </h2>
+                  <a target="_top" href="">User management</a>
+                  <a href="">Role management</a>
+                  <a href="">Permssion management</a>
+                <br>
+                <h2>
+                  <span>
+                    Catalog
+                  </span>
+                </h2>
+                  <a target="_top" href="">Product management</a>
+                  <a href="">Category management</a>
+                </div>
         </div>
         <div class="col-md-9">
             <div>
@@ -104,9 +121,7 @@
                 </tbody>
               </table>
         </div>
-
     </div>
- </div>
     <nav aria-label="Page navigation example">
         <ul class="pagination">
           <li class="page-item">
@@ -126,11 +141,30 @@
           </li>
         </ul>
       </nav>
+      <div class="col-md-12">
+        <div class="footer">FOOTER</div>
+      </div>
+ </div>
+
+
 <style>
-  .btn{
-    position: relative;
-  }
-  .btn-new{
+    .gol {
+        font-size: 20px;
+        text-align: center;
+        padding-top: 10px;
+    }
+    .header{
+        font-size: 20px;
+        text-align: center;
+        padding-top: 10px;
+    }
+    .headerbg{
+        background: #c0f6fa;
+    }
+    .btn{
+        position: relative;
+    }
+    .btn-new{
         background: #0d6efd;
         color: #ffffff;
         float:right;
@@ -148,6 +182,47 @@
         align-items: center;
         display: flex;
         justify-content: center;
+    }
+    .page{
+        margin-top: 100px;
+    }
+    .footer{
+        font-size: 20px;
+        max-width: 300;
+        background: #c0f6fa;
+        text-align: center;
+        height: 50px;
+        padding: 10px
+    }
+    h2{
+    padding-left: 16px;
+        margin: -4px 0 4px 0;
+        width: 204px;
+    }
+    .menu{
+        height: 100%;
+        width: 100%;
+        background-color: #E7E9EB;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        padding-top: 20px;
+        display: block;
+        font-family: Verdana,sans-serif;
+        font-size: 15px;
+        line-height: 1.5;
+    }
+    a{
+        font-family: "Segoe UI",Arial,sans-serif;
+        text-decoration: none;
+        display: block;
+        padding: 2px 1px 1px 16px;
+        color: inherit;
+        background-color: transparent;
+        box-sizing: inherit;
+    }
+    a:hover{
+        color: #000000;
+        background-color: #CCCCCC;
     }
 </style>
 </body>
