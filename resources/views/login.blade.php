@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg bg-light">
+{{-- <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,27 +45,25 @@
       </form>
     </div>
   </div>
-</nav>
+</nav> --}}
     <div class="container">
-        {{-- <div class="row">
-            <div class="col-3">
-                <ul>System
-                    <li>User management</li>
-                    <li>Role management</li>
-                    <li>Permissin management</li>
-                </ul>
-                <ul>Catalog
-                <li>Prodct management</li>
-                <li>Category management</li>
-                </ul>
+        <div class="row" style="margin-top:8px">
+            <div class="col-md-3 ">
+                    <ul>System
+                        <li>User management</li>
+                        <li>Role management</li>
+                        <li>Permissin management</li>
+                    </ul>
+                    <ul>Catalog
+                    <li>Prodct management</li>
+                    <li>Category management</li>
+                    </ul>
             </div>
-        </div> --}}
-            <div class="row" style="margin-top:8px">
-                <div class="col-md-10">
-                    <h1>Create a user</h1>
-                    <a href="createuser" class="btn btn-back">Back</a>
-                </div>
-                <div class="col-md-10">
+                <div class="col-md-9">
+                    <div>
+                        <h1>Create a user</h1>
+                        <a href="createuser" class="btn btn-back">Back</a>
+                    </div>
                     <form class="row" action="" method="POST">
                         @csrf
                         <div class="col-md-12 mb-3">
@@ -107,9 +105,8 @@
                         </div>
                     </form>
                 </div>
-            </div>
-
-        </div>
+         </div>
+     </div>
 </body>
 
 <style>
@@ -125,7 +122,7 @@
         background: #0d6efd;
         color: #ffffff;
         float:right;
-        left: 0;
+        right: 92px;
         bottom: 50px;
         width: 70px;
         border-radius: 5px
