@@ -1,7 +1,11 @@
 <?php
-
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,4 +19,8 @@ use App\Http\Controllers\UserController;
 
 Route::prefix('admin')->group(function(){
     Route::resource('user', UserController::class);
+    Route::resource('role', RoleController::class);
+    Route::resource('permission', PermissionController::class);
+    Route::resource('product', ProductController::class);
+    Route::resource('category', CategoryController::class);
 });

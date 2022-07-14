@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\PermissionRequest;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class PermissionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view("admin.user.index");
+        return view('admin.permission.index');
     }
 
     /**
@@ -23,7 +24,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.create');
+        return view('admin.permission.create');
     }
 
     /**
@@ -32,9 +33,9 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PermissionRequest $request)
     {
-        $this->store($request->validated());
+        //
     }
 
     /**
