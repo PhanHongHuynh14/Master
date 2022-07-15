@@ -3,7 +3,7 @@
 <div class="col-md-9">
     <div>
         <h1>ListPermission</h1>
-        <a href="/admin/permission/create" class="btn btn-new">+Addnew</a>
+        <a href="{{ route('admin.permission.create') }}" class="btn btn-new">+Addnew</a>
     </div>
     <table class="table">
         <thead>

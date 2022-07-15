@@ -3,9 +3,9 @@
 <div class="col-md-9">
     <div>
         <h1>Create a user</h1>
-        <a href="/admin/user" class="btn btn-back">Back</a>
+        <a href="{{ route('admin.user.index')}}" class="btn btn-back">Back</a>
     </div>
-    <form class="row" action="{{ route('user.store')}}">
+    <form class="row" action="{{ route('admin.user.store')}}">
         @csrf
         <div class="col-md-12 mb-3">
         <label for="exampleFormControlInput1" class="form-label">Name</label>

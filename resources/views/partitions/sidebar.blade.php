@@ -15,17 +15,17 @@
                     System
                   </span>
                 </h2>
-                  <a target="_top" href="/admin/user">User management</a>
-                  <a href="/admin/role">Role management</a>
-                  <a href="/admin/permission">Permssion management</a>
+                  <a target="_top" href="{{ route('admin.user.store') }}">User management</a>
+                  <a href="{{ route('admin.role.store') }}">Role management</a>
+                  <a href="{{ route('admin.permission.store') }}">Permssion management</a>
                 <br>
                 <h2>
                   <span>
                     Catalog
                   </span>
                 </h2>
-                  <a target="_top" href="/admin/product">Product management</a>
-                  <a href="/admin/category">Category management</a>
+                  <a target="_top" href="{{ route('admin.product.store') }}">Product management</a>
+                  <a href="{{ route('admin.category.store') }}">Category management</a>
                 </div>
         </div>
         @yield('content')

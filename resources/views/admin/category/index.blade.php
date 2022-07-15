@@ -3,7 +3,7 @@
 <div class="col-md-9">
     <div>
         <h1>ListCategory</h1>
-        <a href="/admin/category/create" class="btn btn-new">+Addnew</a>
+        <a href="{{route('admin.category.create') }}" class="btn btn-new">+Addnew</a>
     </div>
     <table class="table">
         <thead>

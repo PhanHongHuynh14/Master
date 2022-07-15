@@ -3,9 +3,9 @@
 <div class="col-md-9">
     <div>
         <h1>Create a Role</h1>
-        <a href="/admin/role" class="btn btn-back">Back</a>
+        <a href="{{ route('admin.role.index') }}" class="btn btn-back">Back</a>
     </div>
-    <form class="row" action="{{ route('role.store') }}">
+    <form class="row" action="{{ route('admin.role.store') }}">
         @csrf
         <div class="col-md-12 mb-3">
             <label for="exampleFormControlInput1" class="form-label">RoleID</label>

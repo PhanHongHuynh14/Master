@@ -3,7 +3,7 @@
 <div class="col-md-9">
     <div>
         <h1>ListRole</h1>
-        <a href="/admin/role/create" class="btn btn-new">+Addnew</a>
+        <a href="{{ route('admin.role.create') }}" class="btn btn-new">+Addnew</a>
     </div>
     <table class="table">
         <thead>

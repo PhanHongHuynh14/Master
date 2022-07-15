@@ -3,9 +3,9 @@
 <div class="col-md-9">
     <div>
         <h1>Create a Category</h1>
-        <a href="/admin/category" class="btn btn-back">Back</a>
+        <a href="{{route('admin.category.index') }}" class="btn btn-back">Back</a>
     </div>
-    <form class="row" action="{{route('category.store') }}">
+    <form class="row" action="{{route('admin.category.store') }}">
         @csrf
         <div class="col-md-12 mb-3">
             <label for="exampleFormControlInput1" class="form-label">CategoryId</label>
