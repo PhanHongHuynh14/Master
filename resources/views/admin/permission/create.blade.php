@@ -5,7 +5,7 @@
         <h1>Create a Permission</h1>
         <a href="/admin/permission" class="btn btn-back">Back</a>
     </div>
-    <form class="row"  method="POST" action="{{ route('permission.store') }}">
+    <form class="row" action="{{ route('permission.store') }}">
         @csrf
         <div class="col-md-12 mb-3">
             <label for="exampleFormControlInput1" class="form-label">PermissionId</label>
