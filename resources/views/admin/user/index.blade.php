@@ -4,6 +4,10 @@
     <div>
         <h1>UserList</h1>
         <a href="{{ route('admin.user.create')}}" class="btn btn-new">+Addnew</a>
+        <a href="{{ route('admin.mails.create')}}" class="btn btn-sendmail">Send mail</a>
+    </div>
+    <div>
+
     </div>
     <table class="table">
         <thead>

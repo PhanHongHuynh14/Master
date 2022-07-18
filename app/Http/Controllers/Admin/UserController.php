@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UserRequest;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -34,7 +35,10 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-
+        $user = $request->all();
+        $collection = collect($user);
+        session()->push('user', $collection->all());
+        return  redirect('/admin/user');
     }
 
     /**
