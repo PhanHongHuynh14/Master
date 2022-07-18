@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
+    public $listuser;
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view("admin.user.index");
+        $this->listuser = session()->get('user');
+        return view('admin.user.index', ['list' => $this->listuser]);
     }
 
     /**
@@ -41,48 +44,9 @@ class UserController extends Controller
         return  redirect('/admin/user');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function mail()
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UserRequest $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $this->user = session()->get('user');
+        return view('mails.create', ['list' => $this->listuser]);
     }
 }
