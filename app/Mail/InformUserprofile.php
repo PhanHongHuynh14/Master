@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class InformUserrprofile extends Mailable
+class InformUserprofile extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -16,9 +16,11 @@ class InformUserrprofile extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public $user;
+
+    public function __construct($user)
     {
-        //
+        $this->order = $user;
     }
 
     /**

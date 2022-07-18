@@ -21,6 +21,7 @@ class UserRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
+
     public function rules()
     {
         return [
@@ -36,6 +37,7 @@ class UserRequest extends FormRequest
             'ytb' => 'url'
         ];
     }
+
     public function messages()
     {
        return [
