@@ -5,53 +5,53 @@
         <h1>Create a user</h1>
         <a href="{{ route('admin.user.index')}}" class="btn btn-back">Back</a>
     </div>
-    <form class="row" action="{{ route('admin.user.store')}}">
+    <form class="row" action="{{ route('admin.user.store')}}" method="POST">
         @csrf
         <div class="col-md-12 mb-3">
         <label for="exampleFormControlInput1" class="form-label">Name</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nhập tên"  aria-describedby="emailHelp">
+        <input name="name" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nhập tên"  aria-describedby="emailHelp">
         @error('name')
         <span class="text-danger text-left">{{$message}}</span>
         @enderror
         </div>
         <div class="col-md-12 mb-3">
         <label for="exampleFormControlInput1" class="form-label">Email</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nhập email của bạn" aria-describedby="emailHelp">
+        <input name="email" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nhập email của bạn" aria-describedby="emailHelp">
         @error('email')
         <span class="text-danger text-left">{{$message}}</span>
         @enderror
         </div>
         <div class="col-md-6 mb-3">
         <label for="exampleFormControlInput1" class="form-label">Password</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nhập password" aria-describedby="emailHelp">
+        <input name="password" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nhập password" aria-describedby="emailHelp">
         </div>
         @error('password')
         <span class="text-danger text-left">{{$message}}</span>
         @enderror
         <div class="col-md-6 mb-3">
         <label for="exampleFormControlInput1" class="form-label">Password confirm</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nhập lại password" aria-describedby="emailHelp">
+        <input name="password confirm" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nhập lại password" aria-describedby="emailHelp">
         </div>
         @error('password confirm')
         <span class="text-danger text-left">{{$message}}</span>
         @enderror
         <div class="col-md-12 mb-3">
         <label for="exampleFormControlInput1" class="form-label">Address</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nhập Address" aria-describedby="emailHelp">
+        <input name="Address" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nhập Address" aria-describedby="emailHelp">
         </div>
         @error('Address')
         <span class="text-danger text-left">{{$message}}</span>
         @enderror
         <div class="col-md-12 mb-3">
         <label for="exampleFormControlInput1" class="form-label">Facebook</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="http://example.com">
+        <input name="Facebook" type="text" class="form-control" id="exampleFormControlInput1" placeholder="http://example.com">
         </div>
         @error('Facebook')
         <span class="text-danger text-left">{{$message}}</span>
         @enderror
         <div class="col-md-12 mb-3">
         <label for="exampleFormControlInput1" class="form-label">Youtube</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="http://example.com">
+        <input name="Youtube" type="text" class="form-control" id="exampleFormControlInput1" placeholder="http://example.com">
         </div>
         @error('Youtube')
         <span class="text-danger text-left">{{$message}}</span>

@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\RoleRequest as AdminRoleRequest;
-use Illuminate\Http\Request;
-use Illuminate\Contracts\Session\Session;
 
-class RoleController extends Controller
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\EmailRequest;
+use Illuminate\Http\Request;
+
+class SendmailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view('admin.role.index');
+        //
     }
 
     /**
@@ -25,7 +25,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('admin.role.create');
+        return view('admin.mails.create');
     }
 
     /**
@@ -34,9 +34,9 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AdminRoleRequest $request)
+    public function store(EmailRequest $request)
     {
-
+        //
     }
 
     /**

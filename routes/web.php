@@ -1,10 +1,13 @@
 <?php
+
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\SendmailController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserAuth;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +26,21 @@ Route::name('admin.')->prefix('admin')->group(function(){
     Route::resource('permission', PermissionController::class);
     Route::resource('product', ProductController::class);
     Route::resource('category', CategoryController::class);
+    Route::resource('mails', SendmailController::class);
+});
+
+Route::post("user",[UserAuth::class, 'userLogin']);
+Route::view("login",'login');
+Route::view("profile",'profile');
+Route::get('/logout', function(){
+    if(session()->has('user')){
+        return redirect('profile');
+    }
+    return view('login');
+});
+Route::get('/logout', function(){
+    if(session()->has('user')){
+        session()->pull('user');
+    }
+    return redirect('login');
 });
