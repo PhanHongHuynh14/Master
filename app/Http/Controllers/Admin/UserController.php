@@ -9,12 +9,13 @@ use App\Http\Requests\Admin\SendmailRequest;
 
 class UserController extends Controller
 {
+    public $listuser;
+
     public function __construct(MailService $mailService)
     {
         $this->mailService = $mailService;
     }
 
-    public $listuser;
 
     /**
      * Display a listing of the resource.
@@ -25,7 +26,8 @@ class UserController extends Controller
     public function index()
     {
         return view('admin.user.index', [
-            'users' => $this->getSessionUsers(),]);
+            'users' => $this->getSessionUsers(),
+        ]);
     }
 
     /**
@@ -49,7 +51,8 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         session::push('users', $request->validated());
-        return  view('admin.user.index',['users'=> $this->getSessionUsers(),
+        return  view('admin.user.index', [
+            'users'=> $this->getSessionUsers(),
     ]);
     }
 
@@ -72,13 +75,15 @@ class UserController extends Controller
 
             return redirect()->back();
         }
+
         $user = $users->firstWhere('email', $targetMail);
         $this->mailService->sendUserProfile($user);
 
         return redirect()->back();
     }
 
-    private function getSessionUsers() {
+    private function getSessionUsers()
+    {
         return collect(Session::get('users'));
     }
 }

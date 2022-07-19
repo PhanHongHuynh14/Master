@@ -22,6 +22,9 @@
                     <span class="text-danger text-left">{{$message}}</span>
                     @enderror
                 </div>
+                <div class="mb-3">
+                    <input class="form-control" type="file" id="formFileMultiple" multiple>
+                  </div>
                 <div class="clearfix"></div>
                 <div class="bt">
                 <button type="submit" class="btn btn-send">Send</button>

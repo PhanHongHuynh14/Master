@@ -11,12 +11,13 @@ class InformUserprofile extends Mailable
 {
     use Queueable, SerializesModels;
 
+    protected $user;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public $user;
 
     public function __construct($user)
     {
@@ -30,6 +31,6 @@ class InformUserprofile extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.InformUserprofile',['user' => $this->user]);
+        return $this->view('mails.InformUserprofile', ['user' => $this->user]);
     }
 }
