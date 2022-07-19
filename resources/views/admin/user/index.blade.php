@@ -14,7 +14,7 @@
         <div>
             <h1>UserList</h1>
             <a href="{{ route('admin.user.create')}}" class="btn btn-new">+Addnew</a>
-            <a href="{{ route('admin.mails.create')}}" class="btn btn-sendmail">Send mail</a>
+            <a href="{{ route('admin.user.sendmail')}}" class="btn btn-sendmail">Send mail</a>
         </div>
     </div>
 <table class="table table-bordered">
@@ -27,12 +27,12 @@
       </tr>
     </thead>
     <tbody>
-      @if ($list)
-          @foreach ($list as $key => $value)
+      @if (!empty($users))
+          @foreach ($users as $user)
               <tr>
                 <td><img width="30px" src="https://i.imgur.com/s6l2a1U.png"></td>
-                <td>{{$value['name']}}</td>
-                <td>{{$value['email']}}</td>
+                <td>{{$user['name']}}</td>
+                <td>{{$user['email']}}</td>
                 <td><button type="button" class="btn btn-primary">Edit</button> <button type="button" class="btn btn-danger">Delete</button></td>
               </tr>
           @endforeach

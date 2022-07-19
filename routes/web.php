@@ -6,8 +6,8 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SendmailController;
+use App\Services\MailService;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserAuth;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +21,10 @@ use App\Http\Controllers\UserAuth;
 */
 
 Route::name('admin.')->prefix('admin')->group(function(){
+    Route::name('user.')->prefix('user')->group(function() {
+        Route::get('sendmail', [UserController::class, 'getMailForm'])->name('sendmail');
+        Route::post('send', [UserController::class, 'sendMail'])->name('send');
+    });
     Route::resource('user', UserController::class);
     Route::resource('role', RoleController::class);
     Route::resource('permission', PermissionController::class);
@@ -29,18 +33,5 @@ Route::name('admin.')->prefix('admin')->group(function(){
     Route::resource('mails', SendmailController::class);
 });
 
-Route::post("user",[UserAuth::class, 'userLogin']);
-Route::view("login",'login');
-Route::view("profile",'profile');
-Route::get('/logout', function(){
-    if(session()->has('user')){
-        return redirect('profile');
-    }
-    return view('login');
-});
-Route::get('/logout', function(){
-    if(session()->has('user')){
-        session()->pull('user');
-    }
-    return redirect('login');
-});
+
+

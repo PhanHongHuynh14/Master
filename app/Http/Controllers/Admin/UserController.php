@@ -4,9 +4,16 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UserRequest;
 use Illuminate\Support\Facades\Session;
+use App\Services\MailService;
+use App\Http\Requests\Admin\SendmailRequest;
 
 class UserController extends Controller
 {
+    public function __construct(MailService $mailService)
+    {
+        $this->mailService = $mailService;
+    }
+
     public $listuser;
 
     /**
@@ -14,10 +21,11 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        $this->listuser = session()->get('user');
-        return view('admin.user.index', ['list' => $this->listuser]);
+        return view('admin.user.index', [
+            'users' => $this->getSessionUsers(),]);
     }
 
     /**
@@ -25,6 +33,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         return view('admin.user.create');
@@ -36,17 +45,40 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(UserRequest $request)
     {
-        $user = $request->all();
-        $collection = collect($user);
-        session()->push('user', $collection->all());
-        return  redirect('/admin/user');
+        session::push('users', $request->validated());
+        return  view('admin.user.index',['users'=> $this->getSessionUsers(),
+    ]);
     }
 
-    public function mail()
+    public function getMailForm()
     {
-        $this->user = session()->get('user');
-        return view('mails.create', ['list' => $this->listuser]);
+        return view('admin.user.sendmail', [
+            'users' => $this->getSessionUsers(),
+        ]);
+    }
+
+    public function sendMail(SendmailRequest $request)
+    {
+        $targetMail = $request->validated()['mail'];
+        $users = $this->getSessionUsers();
+
+        if (!strcmp($targetMail, "all")) {
+            $users->each(function ($user) {
+                $this->mailService->sendUserProfile($user);
+            });
+
+            return redirect()->back();
+        }
+        $user = $users->firstWhere('email', $targetMail);
+        $this->mailService->sendUserProfile($user);
+
+        return redirect()->back();
+    }
+
+    private function getSessionUsers() {
+        return collect(Session::get('users'));
     }
 }

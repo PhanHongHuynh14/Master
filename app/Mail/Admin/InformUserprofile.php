@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mail;
+namespace App\Mail\Admin;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -20,7 +20,7 @@ class InformUserprofile extends Mailable
 
     public function __construct($user)
     {
-        $this->order = $user;
+        $this->user = $user;
     }
 
     /**
@@ -30,6 +30,6 @@ class InformUserprofile extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('mails.InformUserprofile',['user' => $this->user]);
     }
 }
