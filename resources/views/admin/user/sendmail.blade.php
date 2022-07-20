@@ -6,7 +6,7 @@
         <a href="{{ route('admin.user.index') }}" class="btn btn-back">Back</a>
     </div>
     <div class="col-md-12">
-        <form class="g-3 needs-validation" method="post" action="{{route('admin.user.send')}}">
+        <form class="g-3 needs-validation" method="post" action="{{route('admin.user.send')}}" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-12 mb-3">
@@ -23,7 +23,7 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <input class="form-control" type="file" id="formFileMultiple" multiple>
+                    <input class="form-control" type="file" name="fileToUpload" id="fileToUpload" multiple>
                   </div>
                 <div class="clearfix"></div>
                 <div class="bt">

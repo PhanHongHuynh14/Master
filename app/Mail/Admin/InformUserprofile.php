@@ -12,6 +12,7 @@ class InformUserprofile extends Mailable
     use Queueable, SerializesModels;
 
     protected $user;
+    protected $fileAttached;
 
     /**
      * Create a new message instance.
@@ -19,9 +20,10 @@ class InformUserprofile extends Mailable
      * @return void
      */
 
-    public function __construct($user)
+    public function __construct($user, $fileAttached = null)
     {
         $this->user = $user;
+        $this->fileAttached = $fileAttached;
     }
 
     /**
@@ -31,6 +33,14 @@ class InformUserprofile extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.InformUserprofile', ['user' => $this->user]);
+        $mail = $this->view('mails.inform-user-profile', [
+            'user' => $this->user
+        ]);
+        if($this->fileAttached){
+            $mail->attach($this->fileAttached, [
+                'as' => ''.$this->fileAttached->getClientOriginalName(),
+            ]);
+        }
+        return $mail;
     }
 }

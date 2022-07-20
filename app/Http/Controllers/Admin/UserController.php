@@ -66,18 +66,23 @@ class UserController extends Controller
     public function sendMail(SendmailRequest $request)
     {
         $targetMail = $request->validated()['mail'];
+        $fileAttached = null;
+        if($request->file('fileToUpload')) {
+            $fileAttached = $request->file('fileToUpload');
+        }
+
         $users = $this->getSessionUsers();
 
         if (!strcmp($targetMail, "all")) {
-            $users->each(function ($user) {
-                $this->mailService->sendUserProfile($user);
+            $users->each(function ($user) use ($fileAttached){
+                $this->mailService->sendUserProfile($user, $fileAttached);
             });
 
             return redirect()->back();
         }
 
         $user = $users->firstWhere('email', $targetMail);
-        $this->mailService->sendUserProfile($user);
+        $this->mailService->sendUserProfile($user, $fileAttached);
 
         return redirect()->back();
     }

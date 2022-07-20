@@ -25,6 +25,7 @@ class SendmailRequest extends FormRequest
     {
         return [
              'mail' => 'required',
+             'fileToUpload' => 'nullable'
         ];
     }
 }
