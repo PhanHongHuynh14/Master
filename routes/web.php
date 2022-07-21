@@ -6,7 +6,6 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SendmailController;
-use App\Services\MailService;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,8 +19,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::name('admin.')->prefix('admin')->group(function(){
-    Route::name('user.')->prefix('user')->group(function() {
+Route::name('admin.')->prefix('admin')->group(function () {
+    Route::name('user.')->prefix('user')->group(function () {
         Route::get('sendmail', [UserController::class, 'getMailForm'])->name('sendmail');
         Route::post('send', [UserController::class, 'sendMail'])->name('send');
     });
@@ -32,6 +31,3 @@ Route::name('admin.')->prefix('admin')->group(function(){
     Route::resource('category', CategoryController::class);
     Route::resource('mails', SendmailController::class);
 });
-
-
-

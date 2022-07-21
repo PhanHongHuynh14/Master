@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UserRequest;
 use Illuminate\Support\Facades\Session;
@@ -67,14 +68,14 @@ class UserController extends Controller
     {
         $targetMail = $request->validated()['mail'];
         $fileAttached = null;
-        if($request->file('fileToUpload')) {
+        if ($request->file('fileToUpload')) {
             $fileAttached = $request->file('fileToUpload');
         }
 
         $users = $this->getSessionUsers();
 
         if (!strcmp($targetMail, "all")) {
-            $users->each(function ($user) use ($fileAttached){
+            $users->each(function ($user) use ($fileAttached) {
                 $this->mailService->sendUserProfile($user, $fileAttached);
             });
 

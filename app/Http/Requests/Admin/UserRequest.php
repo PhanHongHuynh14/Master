@@ -1,16 +1,17 @@
 <?php
 
 namespace App\Http\Requests\Admin;
+
 use App\Rules\ValidationName;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserRequest extends FormRequest
 {
-     /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
+    /**
+    * Determine if the user is authorized to make this request.
+    *
+    * @return bool
+    */
     public function authorize()
     {
         return true;
@@ -40,7 +41,7 @@ class UserRequest extends FormRequest
 
     public function messages()
     {
-       return [
+        return [
           'name.required' => __('Bạn chưa nhập Tên.'),
           'email.required' => __('Bạn chưa nhập Email.'),
           'password1.required' => __('Bạn chưa nhập Mật khẩu.'),
