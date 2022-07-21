@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Facades\Mail;
 use App\Mail\Admin\InformUserProfile;
+use Illuminate\Support\Facades\Mail;
 
 class MailService
 {

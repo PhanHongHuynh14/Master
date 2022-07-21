@@ -24,8 +24,8 @@ class SendmailRequest extends FormRequest
     public function rules()
     {
         return [
-             'mail' => 'required',
-             'fileToUpload' => 'nullable'
+            'mail' => 'required',
+            'fileToUpload' => 'nullable',
         ];
     }
 }

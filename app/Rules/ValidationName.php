@@ -21,7 +21,7 @@ class ValidationName implements Rule
      */
     public function passes($attribute, $value)
     {
-        return (!is_numeric(substr($value, 0, 1))) ;
+        return ! is_numeric(substr($value, 0, 1));
     }
 
     /**

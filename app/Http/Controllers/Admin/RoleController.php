@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\RoleRequest as AdminRoleRequest;
 use Illuminate\Http\Request;
-use Illuminate\Contracts\Session\Session;
 
 class RoleController extends Controller
 {
@@ -36,7 +36,6 @@ class RoleController extends Controller
      */
     public function store(AdminRoleRequest $request)
     {
-
     }
 
     /**

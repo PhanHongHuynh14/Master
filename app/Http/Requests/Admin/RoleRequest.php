@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Requests\Admin;
+
 use Illuminate\Foundation\Http\FormRequest;
 
 class RoleRequest extends FormRequest
@@ -24,7 +25,7 @@ class RoleRequest extends FormRequest
     {
         return [
             'id' => 'required',
-            'name' => 'required'
+            'name' => 'required',
         ];
     }
 }
