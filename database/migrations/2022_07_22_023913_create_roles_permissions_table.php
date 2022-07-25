@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('roles_permissions', function (Blueprint $table) {
-            $table->integer('permission_id');
-            $table->integer('role_id');
+            $table->unsignedInteger('permission_id');
+            $table->unsignedInteger('role_id');
             $table->timestamps();
 
 
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles-permissions');
+        Schema::dropIfExists('roles_permissions');
     }
 };
