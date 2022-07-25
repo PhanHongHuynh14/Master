@@ -24,8 +24,10 @@ return new class extends Migration
             $table->string('association_type');
             $table->timestamps();
 
-           
-        });
+            $table->foreign('sender_id')->references('id')->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            });
     }
 
     /**

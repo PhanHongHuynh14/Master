@@ -21,7 +21,12 @@ return new class extends Migration
             $table->tinyInteger('type')->nullable();
             $table->timestamps();
 
-
+            $table->foreign('taggable_id')->references('id')->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreign('tag_id')->references('id')->on('tags')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

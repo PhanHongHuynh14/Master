@@ -20,7 +20,9 @@ return new class extends Migration
             $table->integer('permission_group_id')->unique();
             $table->timestamps();
 
-           
+            $table->foreign('permission_group_id')->references('id')->on('permissions_groups')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 
