@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('messages', function (Blueprint $table) {
-            $table->bigInteger('id')->unsigned();
+            $table->bigIncrements('id');
             $table->string('room');
-            $table->bigInteger('sender_id')->unsigned();
+            $table->unsignedBigInteger('sender_id');
             $table->string('sender_type');
             $table->text('content');
             $table->string('content_type');
@@ -24,8 +24,11 @@ return new class extends Migration
             $table->string('association_type');
             $table->timestamps();
 
-           
-        });
+            $table->foreign('sender_id')->references('id')->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            });
+
     }
 
     /**

@@ -14,14 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->bigInteger('id')->unsigned()->primary();
+            $table->bigIncrements('id');
             $table->string('name',50);
             $table->string('email',32);
             $table->string('username',50);
             $table->string('password',200);
             $table->string('phone',100);
             $table->string('address');
-            $table->bigInteger('school_id')->nullable();
+            $table->unsignedBigInteger('school_id')->nullable();
             $table->tinyInteger('type');
             $table->integer('parent_id');
             $table->string('verified_at');
@@ -35,7 +35,9 @@ return new class extends Migration
             $table->string ('description text');
             $table->timestamps();
 
-
+            $table->foreign('school_id')->references('id')->on('schools')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

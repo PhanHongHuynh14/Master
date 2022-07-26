@@ -13,10 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('permissions_groups', function (Blueprint $table) {
-            $table->integer('id')->primary();
+        Schema::create('permissions', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('name',255)->unique();
+            $table->string('key',255)->unique();
+            $table->unsignedInteger('permission_group_id')->unique();
             $table->timestamps();
+
+            $table->foreign('permission_group_id')->references('id')->on('permissions_groups')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 
@@ -27,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('permissions_groups');
+        Schema::dropIfExists('permissions');
     }
 };
