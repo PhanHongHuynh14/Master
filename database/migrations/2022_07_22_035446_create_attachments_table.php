@@ -13,17 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('attachmnts', function (Blueprint $table) {
+        Schema::create('attachments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('uuid');
-            $table->string('attachable_type',255);
-            $table->bigInteger('attachable_id');
-            $table->string('file_path');
-            $table->string('file_name');
-            $table->string('extension');
-            $table->string('mime_type');
-            $table->integer('size')->unsigned();
+            $table->char('uuid', 36);
+            $table->string('attachable_type', 255);
+            $table->unsignedBigInteger('attachable_id');
+            $table->string('file_path', 255)->default('');
+            $table->string('file_name', 255)->default('');
+            $table->string('extension', 255)->default('');
+            $table->string('mime_type', 255)->default('');
+            $table->unsignedInteger('size')->default(0);
             $table->timestamps();
+            $table->softDeletes('deleted_at');
         });
     }
 

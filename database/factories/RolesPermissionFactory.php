@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Roles_permissions>
  */
-class PermissionsFactory extends Factory
+class RolesPermissionFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,7 @@ class PermissionsFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->name(),
-            'key' => fake()->key(),
+            //
         ];
     }
 }

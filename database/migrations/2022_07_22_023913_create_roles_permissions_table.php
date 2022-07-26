@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedInteger('permission_id');
             $table->unsignedInteger('role_id');
             $table->timestamps();
+            $table->softDeletes('deleted_at');
 
 
             $table->foreign('permission_id')->references('id')->on('permissions')

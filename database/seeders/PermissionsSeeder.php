@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
-use App\Models\Permissions;
+use App\Models\Permission;
 use App\Models\PermissionsGroup;
 
 class PermissionsSeeder extends Seeder
@@ -17,7 +17,7 @@ class PermissionsSeeder extends Seeder
      */
     public function run()
     {
-        Permissions::factory()
+        Permission::factory()
         ->count(10)
         ->state(new Sequence(
             fn () => [

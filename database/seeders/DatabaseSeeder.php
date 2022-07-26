@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,7 +23,16 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             PermissionsGroupSeeder::class,
+            PermissionsSeeder::class,
+            RoleSeeder::class,
             RolePermissionSeeder::class,
+            SchoolSeeder::class,
+            UserSeeder::class,
+            UserRoleSeeder::class,
+            TagSeeder::class,
+            TaggablesSeeder::class,
+            AttachmentSeeder::class,
+            MessageSeeder::class,
         ]);
     }
 }
