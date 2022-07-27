@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class PermissionsGroup extends Model
 {
     use HasFactory;
-    public function permissions()
+    public function permission()
     {
         return $this->hasMany(Permission::class);
     }

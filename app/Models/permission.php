@@ -12,9 +12,9 @@ class Permission extends Model
     {
         return $this->belongsTo(PermissionsGroup::class);
     }
-    public function rolespermissions()
+    public function roles()
     {
-        return $this->hasMany(RolePermission::class);
+        return $this->belongsToMany(Role::class);
     }
 
 }

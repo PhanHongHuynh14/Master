@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Tag extends Model
 {
     use HasFactory;
-    public function taggbles()
+    public function users()
     {
-        return $this->hasMany(Taggable::class);
+        return $this->morphedByMany(User::class, 'taggable');
     }
 }

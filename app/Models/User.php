@@ -8,20 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Model
 {
     use HasFactory;
-    public function taggbles()
+    public function school()
     {
-        return $this->hasMany(Taggable::class);
+        return $this->belongsTo(School::class);
     }
-    public function userRoles()
+    public function tags()
     {
-        return $this->hasMany(UserRole::class);
+        return $this->morphedToMany(Tag::class);
+    }
+    public function roles()
+    {
+        return $this->belongstoMany(UserRole::class);
     }
     public function messages()
     {
         return $this->hasMany(Message::class);
     }
-    public function schools()
-    {
-        return $this->belongsTo(School::class);
-    }
+
 }
