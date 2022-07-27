@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
@@ -15,8 +14,8 @@ return new class extends Migration
     {
         Schema::create('permissions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name',255)->unique();
-            $table->string('key',255)->unique();
+            $table->string('name', 255)->unique();
+            $table->string('key', 255)->unique();
             $table->unsignedInteger('permission_group_id');
             $table->timestamps();
             $table->softDeletes('deleted_at');
