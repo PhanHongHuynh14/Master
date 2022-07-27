@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Permission extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'key',
+    ];
+
     public function Permissiongroup()
     {
         return $this->belongsTo(PermissionsGroup::class);
