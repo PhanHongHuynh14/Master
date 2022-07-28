@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\School;
 use Illuminate\Database\Eloquent\Factories\Sequence;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 
@@ -16,6 +17,18 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        User::factory()
+        ->state([
+            'name' => 'Default Admin',
+            'email' => 'admin@example.org',
+            'username' => 'admin',
+            'password' => Hash::make('123@123'),
+            'type' => User::TYPES['admin'],
+            'verified_at' => now(),
+            'school_id' => null,
+        ])
+        ->create();
+
         User::factory()
         ->count(20)
         ->state(new Sequence(

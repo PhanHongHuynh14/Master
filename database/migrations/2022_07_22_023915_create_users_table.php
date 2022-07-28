@@ -22,7 +22,7 @@ return new class () extends Migration {
             $table->unsignedBigInteger('school_id')->nullable();
             $table->tinyInteger('type')->comment('For detect user');
             $table->integer('parent_id');
-            $table->timestamp('verified_at');
+            $table->string('verified_at')->nullable();
             $table->boolean('closed')->default(false);
             $table->string('code')->unique()->nullable();
             $table->tinyInteger('social_type');
@@ -30,7 +30,7 @@ return new class () extends Migration {
             $table->string('social_name');
             $table->string('social_nickname');
             $table->string('social_avatar');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes('deleted_at');
 
