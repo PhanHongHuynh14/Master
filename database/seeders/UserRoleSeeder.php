@@ -3,11 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\Role;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\UserRole;
+
 class UserRoleSeeder extends Seeder
 {
     /**
@@ -20,7 +20,7 @@ class UserRoleSeeder extends Seeder
         UserRole::factory()
         ->count(20)
         ->state(new Sequence(
-            fn()=>[
+            fn () =>[
                 'user_id'=> User::all()->random(),
                 'role_id'=> Role::all()->random(),
             ],

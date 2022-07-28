@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
@@ -15,20 +14,22 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('room');
+            $table->string('room', 255);
             $table->unsignedBigInteger('sender_id');
-            $table->string('sender_type');
+            $table->string('sender_type', 255);
+            $table->unsignedBigInteger('receiver_id');
+            $table->string('receiver_type', 255);
             $table->text('content');
-            $table->string('content_type');
-            $table->integer('association_id');
-            $table->string('association_type');
+            $table->string('content_type', 255)->default('text');
+            $table->unsignedBigInteger('association_id')->nullable()->default(null);
+            $table->string('association_type', 255)->nullable()->default(null);
             $table->timestamps();
+            $table->softDeletes('deleted_at');
 
             $table->foreign('sender_id')->references('id')->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            });
-
+        });
     }
 
     /**

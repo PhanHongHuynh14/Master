@@ -23,7 +23,7 @@ class AttachmentFactory extends Factory
             'file_path' => fake()->word(),
             'file_name' => fake()->word(),
             'extension' => fake()->word(),
-            'mime_type' => fake()->word(),
+            'mime_type' => 'application/octet-stream',
             'size' => fake()->randomNumber(5, false),
         ];
     }

@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use App\Models\Tag;
@@ -21,7 +20,7 @@ class TaggablesSeeder extends Seeder
         Taggable::factory()
         ->count(15)
         ->state(new Sequence(
-            fn() => [
+            fn () => [
                 'tag_id' => Tag::all()->random(),
                 'taggable_id' => User::all()->random(),
             ],
