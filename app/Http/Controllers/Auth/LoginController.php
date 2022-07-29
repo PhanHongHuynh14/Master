@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
+use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -28,7 +27,14 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+
+    protected function redirectTo()
+    {
+        if (Auth::user()->isAdmin()) {
+            return '/admin';
+        }
+        return '/home';
+    }
 
     /**
      * Create a new controller instance.
@@ -40,11 +46,20 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function logout(Request $request)
+    public function login(LoginRequest $request)
     {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect('/');
+        $credentials = $request->getCredential();
+
+        if(!Auth::attempt($credentials)) {
+            return back()->with(
+                'loginFailed',
+                'The provided credentials do not match our records.',
+            );
+        }
+        $request->session()->regenerate();
+
+        return redirect($this->redirectPath());
     }
+
+
 }

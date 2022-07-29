@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -29,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -67,22 +69,28 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'username' => 'huynh',
+            'username' => $data['name'],
             'password' => Hash::make($data['password']),
-            'type' => '2',
-            'address' => $data['address'] ?? '',
-            'school_id' => $data['school_id'] ?? null,
-            'type' => $data['type'] ?? 0,
-            'parent_id' => $data['parent_id'] ?? 0,
-            'verified_at' => 'null',
-            'closed bool' => false,
-            'code' => $data['code'] ?? null,
-            'social_type' => $data['social_type'] ?? 0,
-            'social_id' => $data['social_id'] ?? null,
-            'social_name' => $data['social_name'] ?? '',
-            'social_nickname' => $data['social_nickname'] ?? '',
-            'social_avatar' => $data['social_avatar'] ?? 'https://fakeimg.pl/300/',
-            'description' => $data['description'] ?? '',
+            'type' => User::TYPES['student'],
+
         ]);
+    }
+    public function register(Request $request)
+    {
+        $validator = $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+            ? new JsonResponse([], 201)
+            : redirect($this->redirectPath())
+                ->with(
+                    'registered',
+                    'Account created. Please check your mailbox for verification email.'
+                );
     }
 }

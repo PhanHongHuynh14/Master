@@ -13,12 +13,6 @@ class User extends Authenticatable
 {
     use HasFactory;
     use AuthenticableTrait;
-
-    const TYPES = [
-        'admin' => 1,
-        'student' => 2,
-    ];
-
     protected $fillable = [
         'name',
         'email',
@@ -38,6 +32,11 @@ class User extends Authenticatable
         'social_nickname',
         'social_avatar',
         'description',
+    ];
+
+    const TYPES = [
+        'admin' => 1,
+        'student' => 2,
     ];
 
     public function School()
@@ -66,5 +65,13 @@ class User extends Authenticatable
         return $this->forceFill([
             'email_verified_at' => $this->freshTimestamp(),
         ])->save();
+    }
+    public function isAdmin()
+    {
+        return $this->type == self::TYPES['admin'];
+    }
+    public function isStudent()
+    {
+        return $this->type == self::TYPES['student'];
     }
 }

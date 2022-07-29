@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\SendmailController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,10 +21,10 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::name('admin.')->prefix('admin')->group(function () {
+Route::name('admin.')->prefix('admin')->middleware('verifyadmin')->group(function () {
     Route::name('user.')->prefix('user')->group(function () {
-        Route::get('sendmail', [UserController::class, 'getMailForm'])->name('sendmail');
-        Route::post('send', [UserController::class, 'sendMail'])->name('send');
+    Route::get('sendmail', [UserController::class, 'getMailForm'])->name('sendmail');
+    Route::post('send', [UserController::class, 'sendMail'])->name('send');
     });
     Route::resource('user', UserController::class);
     Route::resource('role', RoleController::class);
@@ -35,4 +36,4 @@ Route::name('admin.')->prefix('admin')->group(function () {
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
