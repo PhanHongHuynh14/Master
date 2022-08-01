@@ -9,7 +9,8 @@ use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
-
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,3 +38,11 @@ Route::name('admin.')->prefix('admin')->middleware('verifyadmin')->group(functio
 Auth::routes(['verify' => true]);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware' => ['throttle:6,1']], function () {
+    Route::post('/email/verify/resend', [VerificationController::class, 'resend'])->name('verification.resend');
+    Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
+});
+
+
+
