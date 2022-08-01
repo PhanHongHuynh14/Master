@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SendmailController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::name('admin.')->prefix('admin')->group(function () {
+Route::name('admin.')->prefix('admin')->middleware(['verified', 'verifyadmin'])->group(function () {
     Route::name('user.')->prefix('user')->group(function () {
         Route::get('sendmail', [UserController::class, 'getMailForm'])->name('sendmail');
         Route::post('send', [UserController::class, 'sendMail'])->name('send');
@@ -30,4 +32,13 @@ Route::name('admin.')->prefix('admin')->group(function () {
     Route::resource('product', ProductController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('mails', SendmailController::class);
+});
+
+Auth::routes(['verify' => true]);
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware' => ['throttle:6,1']], function () {
+    Route::post('/email/verify/resend', [VerificationController::class, 'resend'])->name('verification.resend');
+    Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
 });
