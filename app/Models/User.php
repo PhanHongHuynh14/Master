@@ -58,12 +58,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function hasVerifiedEmail()
     {
-        return ! is_null($this->email_verified_at);
+        return ! is_null($this->verified_at);
     }
     public function markEmailAsVerified()
     {
         return $this->forceFill([
-            'email_verified_at' => $this->freshTimestamp(),
+            'verified_at' => $this->freshTimestamp(),
         ])->save();
     }
     public function isAdmin()

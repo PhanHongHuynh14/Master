@@ -22,7 +22,7 @@ return new class () extends Migration {
             $table->unsignedBigInteger('school_id')->nullable();
             $table->tinyInteger('type')->comment('For detect user');
             $table->integer('parent_id')->nullable();
-            $table->string('verified_at')->nullable();
+            $table->timestamp('verified_at')->nullable();
             $table->boolean('closed')->default(false);
             $table->string('code')->unique()->nullable();
             $table->tinyInteger('social_type')->nullable();
