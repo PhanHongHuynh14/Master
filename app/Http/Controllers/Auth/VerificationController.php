@@ -47,8 +47,8 @@ class VerificationController extends Controller
     {
         $user = User::find($request->route('id'));
 
-        if (empty($user)) {
-            return redirect($this->redirectPath()->with('error', 'Verification link invalid'));
+        if (!$user) {
+            throw new AuthorizationException();
         }
 
         if (!hash_equals((string) $request->route('hash'), sha1($user->getEmailForVerification()))) {
