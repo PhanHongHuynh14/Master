@@ -28,6 +28,7 @@ class LoginRequest extends FormRequest
             'password' => 'required',
         ];
     }
+
     public function getCredential()
     {
         $credential = $this->validated();

@@ -43,14 +43,17 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo(School::class);
     }
+
     public function Tags()
     {
         return $this->morphedToMany(Tag::class);
     }
+
     public function Roles()
     {
         return $this->belongstoMany(UserRole::class);
     }
+
     public function Messages()
     {
         return $this->hasMany(Message::class);
@@ -60,16 +63,19 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return ! is_null($this->verified_at);
     }
+
     public function markEmailAsVerified()
     {
         return $this->forceFill([
             'verified_at' => $this->freshTimestamp(),
         ])->save();
     }
+
     public function isAdmin()
     {
         return $this->type == self::TYPES['admin'];
     }
+
     public function isStudent()
     {
         return $this->type == self::TYPES['student'];

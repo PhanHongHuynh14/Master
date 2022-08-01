@@ -20,6 +20,7 @@ class InformUserprofile extends Mailable
      *
      * @return void
      */
+
     public function __construct($user, $fileAttached = null)
     {
         $this->user = $user;
@@ -31,6 +32,7 @@ class InformUserprofile extends Mailable
      *
      * @return $this
      */
+
     public function build()
     {
         $mail = $this->view('mails.inform-user-profile', [
