@@ -18,7 +18,7 @@
                         {{Session('registered')}}
                     </div>
                     @endif
-                    @if(Session::has('veritied'))
+                    @if(Session::has('verified'))
                     <div class="alert alert-success" role="success">
                         You email address has been successfully verified.
                     </div>
