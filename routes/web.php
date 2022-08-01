@@ -21,7 +21,7 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::name('admin.')->prefix('admin')->middleware(['verified','verifyadmin'])->group(function () {
+Route::name('admin.')->prefix('admin')->middleware(['verified', 'verifyadmin'])->group(function () {
     Route::name('user.')->prefix('user')->group(function () {
         Route::get('sendmail', [UserController::class, 'getMailForm'])->name('sendmail');
         Route::post('send', [UserController::class, 'sendMail'])->name('send');

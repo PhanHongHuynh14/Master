@@ -48,9 +48,7 @@ class LoginController extends Controller
 
     public function login(LoginRequest $request)
     {
-        $credentials = $request->getCredential();
-
-        if (!Auth::attempt($credentials)) {
+        if (!Auth::attempt($request->getCredential())) {
             return back()->with(
                 'loginFailed',
                 'The provided credentials do not match our records.',
