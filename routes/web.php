@@ -9,8 +9,7 @@ use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,8 +23,8 @@ use Illuminate\Http\Request;
 
 Route::name('admin.')->prefix('admin')->middleware('verifyadmin')->group(function () {
     Route::name('user.')->prefix('user')->group(function () {
-    Route::get('sendmail', [UserController::class, 'getMailForm'])->name('sendmail');
-    Route::post('send', [UserController::class, 'sendMail'])->name('send');
+        Route::get('sendmail', [UserController::class, 'getMailForm'])->name('sendmail');
+        Route::post('send', [UserController::class, 'sendMail'])->name('send');
     });
     Route::resource('user', UserController::class);
     Route::resource('role', RoleController::class);
@@ -43,6 +42,3 @@ Route::group(['middleware' => ['throttle:6,1']], function () {
     Route::post('/email/verify/resend', [VerificationController::class, 'resend'])->name('verification.resend');
     Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
 });
-
-
-

@@ -50,7 +50,7 @@ class LoginController extends Controller
     {
         $credentials = $request->getCredential();
 
-        if(!Auth::attempt($credentials)) {
+        if (!Auth::attempt($credentials)) {
             return back()->with(
                 'loginFailed',
                 'The provided credentials do not match our records.',
@@ -60,6 +60,4 @@ class LoginController extends Controller
 
         return redirect($this->redirectPath());
     }
-
-
 }

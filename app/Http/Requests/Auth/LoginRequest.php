@@ -32,7 +32,7 @@ class LoginRequest extends FormRequest
     {
         $credential = $this->validated();
 
-        if(filter_var($credential['email'], FILTER_VALIDATE_EMAIL)){
+        if (filter_var($credential['email'], FILTER_VALIDATE_EMAIL)) {
             return[
                 'email' =>$credential['email'],
                 'password' =>$credential['password'],
