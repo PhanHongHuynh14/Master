@@ -28,5 +28,4 @@ class PermissionGroupRequest extends FormRequest
             'name' => ['required', Rule::unique('permission_groups')->ignore($this->permission_group)],
         ];
     }
-
 }

@@ -2,11 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Repositories\BaseRepositoryInterface;
-
 abstract class BaseRepository implements BaseRepositoryInterface
 {
-
     protected $model;
 
     public function paginate(array $input = [], $perPage = 10)
