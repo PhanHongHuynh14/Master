@@ -20,7 +20,7 @@ return new class () extends Migration {
             $table->timestamps();
             $table->softDeletes('deleted_at');
 
-            $table->foreign('permission_group_id')->references('id')->on('permissions_groups')
+            $table->foreign('permission_group_id')->references('id')->on('permission_groups')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });

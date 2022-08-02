@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 use App\Models\Permission;
-use App\Models\PermissionsGroup;
+use App\Models\PermissionGroup;
 
 class PermissionsSeeder extends Seeder
 {
@@ -20,7 +20,7 @@ class PermissionsSeeder extends Seeder
         ->count(10)
         ->state(new Sequence(
             fn () => [
-                'permission_group_id' => PermissionsGroup::all()->random(),
+                'permission_group_id' => PermissionGroup::all()->random(),
             ],
         ))
         ->create();

@@ -9,7 +9,7 @@
         @csrf
         <div class="col-md-12 mb-3">
             <label for="exampleFormControlInput1" class="form-label">PermissionId</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" name="id" placeholder="Nhập tên" aria-describedby="emailHelp">
+            <input type="text" class="form-control" id="exampleFormControlInput1" name="id" placeholder="Nhập ID" aria-describedby="emailHelp">
             @error('id')
             <span class="text-danger text-left">{{$message}}</span>
             @enderror
