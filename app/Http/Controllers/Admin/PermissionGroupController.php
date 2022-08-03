@@ -8,7 +8,7 @@ use App\Repositories\Admin\PermissionGroup\PermissionGroupRepositoryInterface as
 
 class PermissionGroupController extends Controller
 {
-    protected $permissionGroupRepositories;
+    protected $permissionGroupRepository;
 
     public function __construct(permissionGroupRepository $permissionGroupRepository)
     {
