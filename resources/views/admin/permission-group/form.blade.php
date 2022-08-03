@@ -2,13 +2,13 @@
 
 @section('content')
 @if (empty($permissionGroup))
-<form class="container-fluid" method="post" action="{{ route('admin.permission-group.store') }}">
+<form class="col-md-9" method="post" action="{{ route('admin.permission-group.store') }}">
   @csrf
   <div class="row">
     <div class="d-flex justify-content-between">
       <h3> Create permission group: </h3>
 @else
-<form class="container-fluid" method="post" action="{{ route('admin.permission-group.update', $permissionGroup->id) }}">
+<form class="col-md-9" method="post" action="{{ route('admin.permission-group.update', $permissionGroup->id) }}">
   @method('PUT')
   @csrf
   <div class="row">

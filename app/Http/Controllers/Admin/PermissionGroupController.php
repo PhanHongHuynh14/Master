@@ -34,7 +34,7 @@ class PermissionGroupController extends Controller
      */
     public function create()
     {
-        return view('admin.permission-group.create');
+        return view('admin.permission-group.form');
     }
 
     /**
