@@ -14,6 +14,7 @@ class PermissionGroupController extends Controller
     {
         $this->permissionGroupRepository = $permissionGroupRepository;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +23,7 @@ class PermissionGroupController extends Controller
     public function index()
     {
         return view('admin.permission-group.index', [
-        'permissionGroups' => $this->permissionGroupRepository->paginate(),
+            'permissionGroups' => $this->permissionGroupRepository->paginate(),
         ]);
     }
 
@@ -57,7 +58,9 @@ class PermissionGroupController extends Controller
      */
     public function show($id)
     {
-        $permissionGroup = $this->permissionGroupRepository->findById($id);
+        if (!$permissionGroup = $this->permissionGroupRepository->findById($id)) {
+            abort(404);
+        }
 
         return view('admin.permission-group.show', [
             'permissionGroup' => $permissionGroup,
@@ -72,9 +75,11 @@ class PermissionGroupController extends Controller
      */
     public function edit($id)
     {
-        $permissionGroup = $this->permissionGroupRepository->findById($id);
+        if (! $permissionGroup = $this->permissionGroupRepository->findById($id)) {
+            abort(404);
+        }
 
-        return view('admin.permission-group.edit', [
+        return view('admin.permission-group.form', [
             'permissionGroup' => $permissionGroup,
         ]);
     }

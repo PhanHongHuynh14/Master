@@ -12,6 +12,9 @@
 </head>
 
 <body>
-    @include('partitions.sidebar')
+     @include('partitions.sidebar')
+
+
+
 </body>
 </html>
