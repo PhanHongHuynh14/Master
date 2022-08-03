@@ -33,6 +33,9 @@
         @endforeach
         @endif
       </table>
+
+      {{ $permissionGroups->links() }}
+
 </div>
-</div>
+
 @endsection

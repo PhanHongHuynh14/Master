@@ -13,8 +13,5 @@
 
 <body>
      @include('partitions.sidebar')
-
-
-
 </body>
 </html>
