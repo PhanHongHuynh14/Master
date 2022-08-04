@@ -12,11 +12,12 @@ class Permission extends Model
     protected $fillable = [
         'name',
         'key',
+        'permission_group_id'
     ];
 
     public function Permissiongroup()
     {
-        return $this->belongsTo(PermissionsGroup::class);
+        return $this->belongsTo(PermissionsGroup::class, 'id');
     }
 
     public function Roles()
