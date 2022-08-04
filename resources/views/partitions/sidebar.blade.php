@@ -18,6 +18,7 @@
                   <a target="_top" href="{{ route('admin.user.store') }}">User management</a>
                   <a href="{{ route('admin.role.store') }}">Role management</a>
                   <a href="{{ route('admin.permission.store') }}">Permssion management</a>
+                  <a href="{{ route('admin.permission-group.store') }}">Permssion Group</a>
                 <br>
                 <h2>
                   <span>

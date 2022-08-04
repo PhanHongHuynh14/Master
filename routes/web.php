@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\PermissionGroupController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,13 +33,9 @@ Route::name('admin.')->prefix('admin')->middleware(['verified', 'verifyadmin'])-
     Route::resource('product', ProductController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('mails', SendmailController::class);
+    Route::resource('permission-group', PermissionGroupController::class);
 });
 
 Auth::routes(['verify' => true]);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-Route::group(['middleware' => ['throttle:6,1']], function () {
-    Route::post('/email/verify/resend', [VerificationController::class, 'resend'])->name('verification.resend');
-    Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
-});

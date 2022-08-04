@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\PermissionsGroup;
+use App\Models\PermissionGroup;
 
-class PermissionsGroupSeeder extends Seeder
+class PermissionGroupSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class PermissionsGroupSeeder extends Seeder
      */
     public function run()
     {
-        PermissionsGroup::factory()->count(50)->create();
+        PermissionGroup::factory()->count(50)->create();
     }
 }
