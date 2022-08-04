@@ -8,48 +8,45 @@
     <table class="table">
         <thead>
           <tr>
-            <th scope="col">PermissionId</th>
-            <th scope="col">PermissionName</th>
-            <th scope="col">Action</th>
+            <th>Name</th>
+            <th>Key</th>
+            <th>Permission_Group_id</th>
+            <th>Action</th>
           </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>Admin</td>
-                <td><button type="button" class="btn btn-primary">Edit</button> <button type="button" class="btn btn-danger">Delete</button></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>User</td>
-                <td><button type="button" class="btn btn-primary">Edit</button> <button type="button" class="btn btn-danger">Delete</button></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Banned</td>
-                <td><button type="button" class="btn btn-primary">Edit</button> <button type="button" class="btn btn-danger">Delete</button></td>
-            </tr>
-        </tbody>
+        @if(!empty($permissions))
+        @foreach($permissions as $permission)
+        <tr>
+            <td>
+                <p>
+                    {{ $permission->name }}
+                </p>
+            </td>
+            <td>
+                <p>
+                    {{ $permission->key }}
+                </p>
+            </td>
+            <td>
+                <p>
+                    {{ $permission->permission_group_id }}
+                </p>
+            </td>
+            <td>
+                <a href="{{ route('admin.permission.show', $permission->id) }}" class="btn btn-success"> Show </a>
+                <a href="{{ route('admin.permission.edit', $permission->id) }}" class="btn btn-primary"> Edit </a>
+                <form class="d-inline" method="post" action="{{ route('admin.permission.destroy', $permission->id) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger"> Delete </button>
+                </form>
+            </td>
+        </tr>
+        @endforeach
+        @endif
       </table>
+
+      {{ $permissions->links() }}
 </div>
-</div>
-<nav aria-label="Page navigation example">
-<ul class="pagination">
-  <li class="page-item">
-    <a class="page-link" href="#" aria-label="Previous">
-      <span aria-hidden="true">&laquo;</span>
-    </a>
-  </li>
-  <li class="page-item"><a class="page-link" href="#">1</a></li>
-  <li class="page-item active" aria-current="page">
-    <a class="page-link" href="#">2</a>
-  </li>
-  <li class="page-item"><a class="page-link" href="#">3</a></li>
-  <li class="page-item">
-    <a class="page-link" href="#" aria-label="Next">
-      <span aria-hidden="true">&raquo;</span>
-    </a>
-  </li>
-</ul>
-</nav>
+
 @endsection
