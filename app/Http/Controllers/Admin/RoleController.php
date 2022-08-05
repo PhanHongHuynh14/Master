@@ -3,11 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\RoleRequest as AdminRoleRequest;
+use App\Http\Requests\Admin\RoleRequest;
 use Illuminate\Http\Request;
+use App\Repositories\Admin\Role\RoleRepositoryInterface as RoleRepository;
 
 class RoleController extends Controller
 {
+    protected $roleRepository;
+
+    public function __construct(RoleRepository $roleRepository)
+    {
+        $this->roleRepository = $roleRepository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +22,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view('admin.role.index');
+        return view('admin.role.index', [
+            'roles' => $this->roleRepository->paginate(),
+        ]);
     }
 
     /**
@@ -25,7 +34,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('admin.role.create');
+        return view('admin.role.form');
     }
 
     /**
@@ -34,8 +43,11 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AdminRoleRequest $request)
+    public function store(RoleRequest $request)
     {
+        $this->roleRepository->save($request->validated());
+
+        return redirect()->route('admin.role.index');
     }
 
     /**
@@ -46,7 +58,9 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('admin.role.form', [
+            'role' => $this->roleRepository->findById($id),
+        ]);
     }
 
     /**
@@ -57,7 +71,9 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.Role.form', [
+            'role' => $this->roleRepository->findById($id),
+        ]);
     }
 
     /**
@@ -69,7 +85,9 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->roleRepository->save($request->validated(), ['id' => $id]);
+
+        return redirect()->route('admin.role.index');
     }
 
     /**
@@ -80,6 +98,8 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->roleRepository->deleteById($id);
+
+        return redirect()->route('admin.role.index');
     }
 }
