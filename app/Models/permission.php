@@ -17,7 +17,7 @@ class Permission extends Model
 
     public function Permissiongroup()
     {
-        return $this->belongsTo(PermissionsGroup::class, 'id');
+        return $this->belongsTo(PermissionGroup::class, 'permission_group_id', 'id');
     }
 
     public function Roles()
