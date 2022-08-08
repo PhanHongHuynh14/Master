@@ -6,14 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\RoleRequest;
 use Illuminate\Http\Request;
 use App\Repositories\Admin\Role\RoleRepositoryInterface as RoleRepository;
+use App\Repositories\Admin\PermissionGroup\PermissionGroupRepositoryInterface as PermissionGroupRepository;
+use Illuminate\Support\Facades\DB;
 
 class RoleController extends Controller
 {
     protected $roleRepository;
+    protected $permissionGroupRepository;
 
-    public function __construct(RoleRepository $roleRepository)
+    public function __construct(RoleRepository $roleRepository, PermissionGroupRepository $permissionGroupRepository)
     {
         $this->roleRepository = $roleRepository;
+        $this->permissionGroupRepository = $permissionGroupRepository;
     }
     /**
      * Display a listing of the resource.
@@ -34,7 +38,9 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('admin.role.form');
+        return view('admin.role.form', [
+            'permissionGroups' => $this->permissionGroupRepository->getAll(),
+        ]);
     }
 
     /**
@@ -45,9 +51,25 @@ class RoleController extends Controller
      */
     public function store(RoleRequest $request)
     {
-        $this->roleRepository->save($request->validated());
+        DB::begintransaction();
 
-        return redirect()->route('admin.role.index');
+        try {
+            $role = $this->roleRepository->save($request->validated());
+            $role->Permissions()->sync($request->input('permission_ids'));
+            DB::commit();
+        } catch (Exception) {
+            DB::rollBack();
+
+            return redirect()->back() ->with(
+                'error',
+                'Exception occured. Please try again later.'
+            );
+        }
+
+        return redirect()->route('admin.role.index')->with(
+            'success',
+            'Creation success.'
+        );
     }
 
     /**
@@ -58,8 +80,12 @@ class RoleController extends Controller
      */
     public function show($id)
     {
+        if (! $role = $this->roleRepository->findById($id)) {
+            abort(404);
+        }
+
         return view('admin.role.form', [
-            'role' => $this->roleRepository->findById($id),
+            'role' => $role,
         ]);
     }
 
@@ -71,8 +97,13 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.Role.form', [
-            'role' => $this->roleRepository->findById($id),
+        if (! $role = $this->roleRepository->findById($id)) {
+            abort(404);
+        }
+
+        return view('admin.role.form', [
+            'role' => $role,
+            'permissionGroups' => $this->permissionGroupRepository->getAll(),
         ]);
     }
 
@@ -85,9 +116,25 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->roleRepository->save($request->validated(), ['id' => $id]);
+        DB::begintransaction();
 
-        return redirect()->route('admin.role.index');
+        try {
+            $role = $this->roleRepository->save($request->validated(), ['id' =>  $id]);
+            $role->permisson()->sync($request->input('permission_ids'));
+            DB::commit();
+        } catch (\Exception) {
+            DB::rollBack();
+
+            return redirect()->back() ->with(
+                'error',
+                'Exception occured. Please try again later.'
+            );
+        }
+
+        return redirect()->route('admin.role.index')->with(
+            'success',
+            'Creation success.'
+        );
     }
 
     /**
@@ -98,8 +145,24 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        $this->roleRepository->deleteById($id);
+        DB::begintransaction();
 
-        return redirect()->route('admin.role.index');
+        try {
+            $this->roleRepository->findById($id)->Permissions()->detach();
+            $this->roleRepository->deleteById($id);
+            DB::commit();
+        } catch (Exception) {
+            DB::rollBack();
+
+            return redirect()->back() ->with(
+                'error',
+                'Exception occured. Please try again later.'
+            );
+        }
+
+        return redirect()->route('admin.role.index')->with(
+            'success',
+            'Creation success.'
+        );
     }
 }
