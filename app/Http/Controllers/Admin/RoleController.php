@@ -27,7 +27,7 @@ class RoleController extends Controller
     public function index()
     {
         return view('admin.role.index', [
-            'roles' => $this->roleRepository->paginate(),
+            'roles' => $this->roleRepository->with('Permissions')->paginate(),
         ]);
     }
 
@@ -58,17 +58,11 @@ class RoleController extends Controller
             $role->Permissions()->sync($request->input('permission_ids'));
             DB::commit();
 
-            return redirect()->route('admin.role.index')->with(
-                'success',
-                'Creation success.'
-            );
+            return redirect()->route('admin.role.index');
         } catch (Exception) {
             DB::rollBack();
 
-            return redirect()->back() ->with(
-                'error',
-                'Exception occured. Please try again later.'
-            );
+            return redirect()->back();
         }
     }
 
@@ -124,17 +118,11 @@ class RoleController extends Controller
             $role->permisson()->sync($request->input('permission_ids'));
             DB::commit();
 
-            return redirect()->route('admin.role.index')->with(
-                'success',
-                'Creation success.'
-            );
+            return redirect()->route('admin.role.index');
         } catch (Exception) {
             DB::rollBack();
 
-            return redirect()->back() ->with(
-                'error',
-                'Exception occured. Please try again later.'
-            );
+            return redirect()->back();
         }
     }
 
@@ -153,17 +141,11 @@ class RoleController extends Controller
             $this->roleRepository->deleteById($id);
             DB::commit();
 
-            return redirect()->route('admin.role.index')->with(
-                'success',
-                'Creation success.'
-            );
+            return redirect()->route('admin.role.index');
         } catch (Exception) {
             DB::rollBack();
 
-            return redirect()->back() ->with(
-                'error',
-                'Exception occured. Please try again later.'
-            );
+            return redirect()->back();
         }
     }
 }
