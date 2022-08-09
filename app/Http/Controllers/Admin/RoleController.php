@@ -39,7 +39,7 @@ class RoleController extends Controller
     public function create()
     {
         return view('admin.role.form', [
-            'permissionGroups' => $this->permissionGroupRepository->getAll(),
+            'permissionGroups' => $this->permissionGroupRepository->with('permissions')->get(),
         ]);
     }
 
@@ -86,6 +86,7 @@ class RoleController extends Controller
 
         return view('admin.role.form', [
             'role' => $role,
+            'permissionGroups' => $this->permissionGroupRepository->with('permissions')->get(),
         ]);
     }
 
@@ -122,7 +123,12 @@ class RoleController extends Controller
             $role = $this->roleRepository->save($request->validated(), ['id' =>  $id]);
             $role->permisson()->sync($request->input('permission_ids'));
             DB::commit();
-        } catch (\Exception) {
+
+            return redirect()->route('admin.role.index')->with(
+                'success',
+                'Creation success.'
+            );
+        } catch (Exception) {
             DB::rollBack();
 
             return redirect()->back() ->with(
@@ -130,11 +136,6 @@ class RoleController extends Controller
                 'Exception occured. Please try again later.'
             );
         }
-
-        return redirect()->route('admin.role.index')->with(
-            'success',
-            'Creation success.'
-        );
     }
 
     /**
@@ -151,6 +152,11 @@ class RoleController extends Controller
             $this->roleRepository->findById($id)->Permissions()->detach();
             $this->roleRepository->deleteById($id);
             DB::commit();
+
+            return redirect()->route('admin.role.index')->with(
+                'success',
+                'Creation success.'
+            );
         } catch (Exception) {
             DB::rollBack();
 
@@ -159,10 +165,5 @@ class RoleController extends Controller
                 'Exception occured. Please try again later.'
             );
         }
-
-        return redirect()->route('admin.role.index')->with(
-            'success',
-            'Creation success.'
-        );
     }
 }

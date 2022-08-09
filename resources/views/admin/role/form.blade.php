@@ -45,7 +45,7 @@
     @enderror
   </div>
   @php
-    $select = collect([]);
+    $selected = collect([]);
     if(!empty(old('permission_ids'))) {
         $selected = collect(old('permission_ids', []));
     }else if(!empty($role)) {
