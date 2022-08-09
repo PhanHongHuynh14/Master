@@ -18,14 +18,10 @@
         @foreach($roles as $role)
         <tr>
             <td>
-                <p>
-                    {{ $role->name }}
-                </p>
+                {{ $role->name }}
             </td>
             <td>
-                <p>
-                    {{ $role->permissions->count() }}
-                </p>
+                {{ $role->permissions->count() }}
             </td>
             <td>
                 <a href="{{ route('admin.role.show', $role->id) }}" class="btn btn-success"> Show </a>

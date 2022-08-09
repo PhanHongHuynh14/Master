@@ -57,6 +57,11 @@ class RoleController extends Controller
             $role = $this->roleRepository->save($request->validated());
             $role->Permissions()->sync($request->input('permission_ids'));
             DB::commit();
+
+            return redirect()->route('admin.role.index')->with(
+                'success',
+                'Creation success.'
+            );
         } catch (Exception) {
             DB::rollBack();
 
@@ -65,11 +70,6 @@ class RoleController extends Controller
                 'Exception occured. Please try again later.'
             );
         }
-
-        return redirect()->route('admin.role.index')->with(
-            'success',
-            'Creation success.'
-        );
     }
 
     /**
