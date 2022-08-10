@@ -1,5 +1,11 @@
 @extends('layouts.admin.master')
 @section('content')
+
+@if(Seesion::has('error'))
+<div class="alert alert-danger" role="alert">
+    {{Session('error')}}
+</div>
+@endif
 <div class="col-md-9">
   <div class="d-flex justify-content-between">
     <p style="font-weight: bold;">Role List</p>
