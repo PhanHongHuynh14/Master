@@ -12,7 +12,8 @@ class Permission extends Model
     protected $fillable = [
         'name',
         'key',
-        'permission_group_id'
+        'permission_group_id',
+        'role_id',
     ];
 
     public function Permissiongroup()
@@ -22,6 +23,6 @@ class Permission extends Model
 
     public function Roles()
     {
-        return $this->belongsToMany(Role::class);
+        return $this->belongsToMany(Role::class, 'roles_permissions');
     }
 }
