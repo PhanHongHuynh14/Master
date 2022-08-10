@@ -27,7 +27,7 @@ class RoleController extends Controller
     public function index()
     {
         return view('admin.role.index', [
-            'roles' => $this->roleRepository->with('Permissions')->paginate(),
+            'roles' => $this->roleRepository->with('permissions')->paginate(),
         ]);
     }
 
@@ -58,7 +58,10 @@ class RoleController extends Controller
             $role->Permissions()->sync($request->input('permission_ids'));
             DB::commit();
 
-            return redirect()->route('admin.role.index');
+            return redirect()->route('admin.role.index')->with(
+                'success',
+                'Creation success.'
+            );
         } catch (Exception) {
             DB::rollBack();
 
@@ -118,7 +121,10 @@ class RoleController extends Controller
             $role->permisson()->sync($request->input('permission_ids'));
             DB::commit();
 
-            return redirect()->route('admin.role.index');
+            return redirect()->route('admin.role.index')->with(
+                'success',
+                'Edit success.'
+            );
         } catch (Exception) {
             DB::rollBack();
 
@@ -141,7 +147,10 @@ class RoleController extends Controller
             $this->roleRepository->deleteById($id);
             DB::commit();
 
-            return redirect()->route('admin.role.index');
+            return redirect()->route('admin.role.index')->with(
+                'success',
+                'Deletion success'
+            );
         } catch (Exception) {
             DB::rollBack();
 
