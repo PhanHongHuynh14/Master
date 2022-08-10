@@ -1,9 +1,9 @@
 @extends('layouts.admin.master')
 @section('content')
 
-@if(Seesion::has('error'))
+@if(Session::has('error'))
 <div class="alert alert-danger" role="alert">
-    {{Session('error')}}
+    {{session('error')}}
 </div>
 @endif
 <div class="col-md-9">

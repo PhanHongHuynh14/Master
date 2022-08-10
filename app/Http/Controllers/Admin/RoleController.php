@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\RoleRequest;
-use Illuminate\Http\Request;
 use App\Repositories\Admin\Role\RoleRepositoryInterface as RoleRepository;
 use App\Repositories\Admin\PermissionGroup\PermissionGroupRepositoryInterface as PermissionGroupRepository;
 use Illuminate\Support\Facades\DB;
@@ -101,7 +100,7 @@ class RoleController extends Controller
 
         return view('admin.role.form', [
             'role' => $role,
-            'permissionGroups' => $this->permissionGroupRepository->getAll(),
+            'permissionGroups' => $this->permissionGroupRepository->with('permissions')->get(),
         ]);
     }
 
@@ -112,13 +111,13 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RoleRequest $request, $id)
     {
         DB::begintransaction();
 
         try {
             $role = $this->roleRepository->save($request->validated(), ['id' =>  $id]);
-            $role->permisson()->sync($request->input('permission_ids'));
+            $role->permissions()->sync($request->input('permission_ids'));
             DB::commit();
 
             return redirect()->route('admin.role.index')->with(
