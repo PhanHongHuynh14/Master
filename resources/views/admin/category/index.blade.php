@@ -2,15 +2,15 @@
 @section('content')
 <div class="col-md-9">
     <div>
-        <h1>ListCategory</h1>
-        <a href="{{route('admin.category.create') }}" class="btn btn-new">+Addnew</a>
+        <h1>{{ __('message.listcategory')}}</h1>
+        <a href="{{route('admin.category.create') }}" class="btn btn-new">{{ __('message.addnew')}}</a>
     </div>
     <table class="table">
         <thead>
           <tr>
-            <th scope="col">CategoryId</th>
-            <th scope="col">CategoryName</th>
-            <th scope="col">Action</th>
+            <th scope="col">{{ __('message.categoryid')}}</th>
+            <th scope="col">{{ __('message.categoryname')}}</th>
+            <th scope="col">{{ __('message.action')}}</th>
           </tr>
         </thead>
         <tbody>

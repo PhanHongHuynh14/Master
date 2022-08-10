@@ -2,17 +2,17 @@
 @section('content')
 <div class="col-md-9">
     <div>
-        <h1>ListProduct</h1>
-        <a href="{{ route('admin.product.create') }}"class="btn btn-new">+Addnew</a>
+        <h1>{{ __('message.listproduct')}}</h1>
+        <a href="{{ route('admin.product.create') }}"class="btn btn-new">{{ __('message.addnew')}}</a>
     </div>
     <table class="table">
         <thead>
           <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Image</th>
-            <th scope="col">Description</th>
-            <th scope="col">Category</th>
-            <th scope="col">Action</th>
+            <th scope="col">{{ __('message.name')}}</th>
+            <th scope="col">{{ __('message.image')}}</th>
+            <th scope="col">{{ __('message.description')}}</th>
+            <th scope="col">{{ __('message.category')}}</th>
+            <th scope="col">{{ __('message.action')}}</th>
           </tr>
         </thead>
         <tbody>

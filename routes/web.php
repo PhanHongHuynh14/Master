@@ -22,7 +22,7 @@ use App\Http\Controllers\Admin\PermissionGroupController;
 |
 */
 
-Route::name('admin.')->prefix('admin')->middleware(['verified', 'verifyadmin'])->group(function () {
+Route::name('admin.')->prefix('admin')->middleware(['verified', 'verifyadmin', 'locale'])->group(function () {
     Route::name('user.')->prefix('user')->group(function () {
         Route::get('sendmail', [UserController::class, 'getMailForm'])->name('sendmail');
         Route::post('send', [UserController::class, 'sendMail'])->name('send');
@@ -39,3 +39,8 @@ Route::name('admin.')->prefix('admin')->middleware(['verified', 'verifyadmin'])-
 Auth::routes(['verify' => true]);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('set-locale/{locale}', function ($locale) {
+    session()->put('locale', $locale);
+    return redirect()->back();
+})->middleware('locale')->name('locale.setting');

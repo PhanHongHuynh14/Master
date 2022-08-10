@@ -11,7 +11,7 @@
     @csrf
     <div class="row">
       <div class="d-flex justify-content-between">
-        <h3> Create role: </h3>
+        <h3> {{ __('message.createrole')}} </h3>
   @else
 <form class="col-md-9" method="post" action="{{ route('admin.role.update', $role->id) }}">
     @method('PUT')
@@ -21,7 +21,7 @@
         <h3> Edit role: </h3>
 @endif
         <a href="{{ route('admin.role.index') }}" class="btn btn-primary">
-          Back
+            {{ __('message.back')}}
         </a>
       </div>
     </div>
@@ -36,7 +36,7 @@
   </div>
   @endif
   <div class="container-fluid">
-    <label for="name" class="form-label"> Name </label>
+    <label for="name" class="form-label"> {{ __('message.name')}} </label>
     <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="" value="{{ old('name', $role->name ?? '') }}">
     @error('name')
       <span class="invalid-feedback" role="alert">
@@ -78,7 +78,7 @@
   <div class="row mt-3">
     <div class="d-flex justify-content-center">
       <button type="submit" class="btn btn-primary">
-        Save
+        {{ __('message.save')}}
       </button>
     </div>
   </div>

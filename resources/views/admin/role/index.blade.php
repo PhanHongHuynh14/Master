@@ -8,17 +8,17 @@
 @endif
 <div class="col-md-9">
   <div class="d-flex justify-content-between">
-    <p style="font-weight: bold;">Role List</p>
+    <p style="font-weight: bold;">{{ __('message.rolelist')}}</p>
     <div>
-      <a href="{{ route('admin.role.create') }}" class="btn btn-primary">Create</a>
+      <a href="{{ route('admin.role.create') }}" class="btn btn-primary">{{ __('message.addnew')}}</a>
     </div>
   </div>
   <div class="table-responsive">
     <table class="table">
         <tr>
-            <th> Name </th>
-            <th> Permission Count </th>
-            <th> Action </th>
+            <th> {{ __('message.name')}} </th>
+            <th> {{ __('message.permissioncount')}} </th>
+            <th> {{ __('message.action')}} </th>
         </tr>
         @if(!empty($roles))
         @foreach($roles as $role)
@@ -30,12 +30,12 @@
                 {{ $role->permissions->count() }}
             </td>
             <td>
-                <a href="{{ route('admin.role.show', $role->id) }}" class="btn btn-success"> Show </a>
-                <a href="{{ route('admin.role.edit', $role->id) }}" class="btn btn-primary"> Edit </a>
+                <a href="{{ route('admin.role.show', $role->id) }}" class="btn btn-success"> {{ __('message.show')}} </a>
+                <a href="{{ route('admin.role.edit', $role->id) }}" class="btn btn-primary"> {{ __('message.edit')}} </a>
                 <form class="d-inline" method="post" action="{{ route('admin.role.destroy', $role->id) }}">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger"> Delete </button>
+                    <button type="submit" class="btn btn-danger"> {{ __('message.delete')}} </button>
                 </form>
             </td>
         </tr>
