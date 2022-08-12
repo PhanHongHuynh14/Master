@@ -13,7 +13,7 @@
             <div class="menu">
                 <h2>
                   <span>
-                    System
+                    {{ __('message.system')}}
                   </span>
                 </h2>
                   <a target="_top" href="{{ route('admin.user.store') }}">{{ __('message.usermanagement')}}</a>
