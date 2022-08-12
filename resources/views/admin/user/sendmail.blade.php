@@ -2,8 +2,8 @@
 @section('content')
 <div class="col-md-9">
     <div>
-        <h1>Send email to user</h1>
-        <a href="{{ route('admin.user.index') }}" class="btn btn-back">Back</a>
+        <h1>{{ __('message.sendemailtouser')}}</h1>
+        <a href="{{ route('admin.user.index') }}" class="btn btn-back">{{ __('message.back')}}</a>
     </div>
     <div class="col-md-12">
         <form class="g-3 needs-validation" method="post" action="{{route('admin.user.send')}}" enctype="multipart/form-data">
@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-md-12 mb-3">
                     <select class="form-control" name="mail">
-                        <option>Select a user</option>
+                        <option>{{ __('message.selectauser')}}</option>
                         @if (!empty($users))
                         @foreach($users as $user)
                         <option value="{{$user['email']}}">{{ $user['name'] }}</option>
@@ -27,7 +27,7 @@
                   </div>
                 <div class="clearfix"></div>
                 <div class="bt">
-                <button type="submit" class="btn btn-send">Send</button>
+                <button type="submit" class="btn btn-send">{{ __('message.send')}}</button>
                 </div>
             </div>
         </form>

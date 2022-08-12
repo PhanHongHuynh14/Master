@@ -6,28 +6,30 @@
         <div class="col-md-9">
             <h1 class="header">HEADER</h1>
         </div>
+
     </div>
     <div class="row" style="margin-top:8px">
         <div class="col-md-3 ">
             <div class="menu">
                 <h2>
                   <span>
-                    System
+                    {{ __('message.system')}}
                   </span>
                 </h2>
-                  <a target="_top" href="{{ route('admin.user.store') }}">User management</a>
-                  <a href="{{ route('admin.role.store') }}">Role management</a>
-                  <a href="{{ route('admin.permission.store') }}">Permssion management</a>
-                  <a href="{{ route('admin.permission-group.store') }}">Permssion Group</a>
+                  <a target="_top" href="{{ route('admin.user.store') }}">{{ __('message.usermanagement')}}</a>
+                  <a href="{{ route('admin.role.store') }}">{{ __('message.rolemanagement')}}</a>
+                  <a href="{{ route('admin.permission.store') }}">{{ __('message.permissionmanagement')}}</a>
+                  <a href="{{ route('admin.permission-group.store') }}">{{ __('message.permissiongroup')}}</a>
                 <br>
                 <h2>
                   <span>
-                    Catalog
+                    {{ __('message.catalog')}}
                   </span>
                 </h2>
-                  <a target="_top" href="{{ route('admin.product.store') }}">Product management</a>
-                  <a href="{{ route('admin.category.store') }}">Category management</a>
-                </div>
+                  <a target="_top" href="{{ route('admin.product.store') }}">{{ __('message.productmanagement')}}</a>
+                  <a href="{{ route('admin.category.store') }}">{{ __('message.categorymanagement')}}</a>
+            </div>
+
         </div>
         @yield('content')
       <div class="col-md-12">

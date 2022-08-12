@@ -12,18 +12,18 @@
   </div>
 @endif
         <div>
-            <h1>UserList</h1>
-            <a href="{{ route('admin.user.create')}}" class="btn btn-new">+Addnew</a>
-            <a href="{{ route('admin.user.sendmail')}}" class="btn btn-sendmail">Send mail</a>
+            <h1>{{ __('message.userlist')}}</h1>
+            <a href="{{ route('admin.user.create')}}" class="btn btn-new">{{ __('message.addnew')}}</a>
+            <a href="{{ route('admin.user.sendmail')}}" class="btn btn-sendmail">{{ __('message.sendmail')}}</a>
         </div>
     </div>
 <table class="table table-bordered">
     <thead>
       <tr>
-        <th scope="col">Avatar</th>
-        <th scope="col">Name</th>
+        <th scope="col">{{ __('message.avatar')}}</th>
+        <th scope="col">{{ __('message.name')}}</th>
         <th scope="col">Email</th>
-        <th scope="col">Action</th>
+        <th scope="col">{{ __('message.action')}}</th>
       </tr>
     </thead>
     <tbody>

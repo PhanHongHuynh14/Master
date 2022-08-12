@@ -121,8 +121,8 @@ class RoleController extends Controller
             DB::commit();
 
             return redirect()->route('admin.role.index')->with(
-                'success',
-                'Edit success.'
+                __('role.success'),
+                __('role.editsuccess'),
             );
         } catch (Exception) {
             DB::rollBack();
@@ -147,8 +147,8 @@ class RoleController extends Controller
             DB::commit();
 
             return redirect()->route('admin.role.index')->with(
-                'success',
-                'Deletion success'
+                __('role.success'),
+                __('role.deletionsuccess'),
             );
         } catch (Exception) {
             DB::rollBack();
