@@ -28,13 +28,6 @@
                 </h2>
                   <a target="_top" href="{{ route('admin.product.store') }}">{{ __('message.productmanagement')}}</a>
                   <a href="{{ route('admin.category.store') }}">{{ __('message.categorymanagement')}}</a>
-                <h2 style="padding-top: 16px">
-                    <span>
-                        {{ __('message.language')}}
-                    </span>
-                </h2>
-                <a href="{!! route('locale.setting', ['en']) !!}">EN</a>
-                <a href="{!! route('locale.setting', ['vi']) !!}">VN</a>
             </div>
 
         </div>
