@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use App\Rules\ValidationName;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UserRequest extends FormRequest
 {
@@ -31,10 +32,48 @@ class UserRequest extends FormRequest
                 'not_regex:/^[@#$%&*]/',
                 new ValidationName(),
             ],
-            'email' => 'required|email|not_regex:/^[root]/',
-            'password' => 'required|min:8|regex:/(?=.*?[@#$%&*])/',
-            'fb' => 'url',
-            'ytb' => 'url',
+            'email' => [
+                'required',
+                'email',
+                'max:32',
+                'not_regex:/^[root]/',
+                Rule::unique('users')->ignore($this->user),
+            ],
+            'username' => [
+                'required',
+                'min:2',
+                'max:50',
+                Rule::unique('users')->ignore($this->user),
+            ],
+            'password' => [
+                'required',
+                'min:8',
+                'max:200',
+                'regex:/^[0-9@#$%&*]+$/',
+            ],
+            'role_ids' => [
+                'required',
+                'array',
+            ],
+            'address'=> 'nullable|max:255',
+            'school_id' => 'nullable|exists:schools,id',
+            'type' => 'nullable',
+            'parent_id' => 'nullable|exists:users,id',
+            'closed' => 'nullable|boolean',
+            'code' => [
+                'nullable',
+                Rule::unique('users')->ignore($this->user),
+            ],
+            'social_type' => 'nullable|numeric',
+            'social_id' => [
+                'nullable',
+                Rule::unique('users')->ignore($this->user),
+            ],
+            'social_name' => 'nullable',
+            'social_nickname' => 'nullable',
+            'social_avatar' => 'nullable|url',
+            'description' => 'nullable',
+
         ];
     }
 
