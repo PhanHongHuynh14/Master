@@ -68,7 +68,7 @@ class UserController extends Controller
 
         try {
             $user = $this->userRepository->save($data);
-            $user->roles()->sync($request->input('role'));
+            $user->roles()->sync($request->input('role_ids'));
             DB::commit();
 
             return redirect()->route('admin.user.index', $user->id)->with(
@@ -94,7 +94,6 @@ class UserController extends Controller
         return view('admin.user.form', [
             'user' => $user,
             'roles' => $this->roleRepository->getAll(),
-            'isShow' => true,
         ]);
     }
 
@@ -107,7 +106,6 @@ class UserController extends Controller
         return view('admin.user.form', [
             'user' => $user,
             'roles' => $this->roleRepository->getAll(),
-            'isShow' => false,
         ]);
     }
 
@@ -120,7 +118,7 @@ class UserController extends Controller
             $user->roles()->sync($request->input('role_ids'));
             DB::commit();
 
-            return redirect()->route('admin.user.form', $id)->with(
+            return redirect()->route('admin.user.show', $id)->with(
                 'success',
                 'Edit completed successfully.'
             );

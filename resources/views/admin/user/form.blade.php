@@ -8,7 +8,7 @@
   <div class="row">
     <div class="d-flex justify-content-between">
       <h3> {{ __('message.createauser') }} </h3>
-@elseif ($isShow)
+@elseif (!empty($isShow))
 <form class="col-md-12" action="">
   <div class="row">
     <div class="d-flex justify-content-between">
@@ -19,7 +19,7 @@
   @csrf
   <div class="row">
     <div class="d-flex justify-content-between">
-      <h3> {{ __('message.edituser') }} </h3>
+      <h3> Edit user </h3>
 @endif
       <a href="{{ route('admin.user.index') }}" class="btn btn-primary">
       {{ __('message.back') }}
@@ -34,7 +34,7 @@
   @endif
   <div class="col-md-12">
     <label for="name" class="form-label"> {{ __('message.name') }} </label>
-    <input name="name" type="text" class="form-control mb-2 @error('name') is-invalid @enderror" id="name" placeholder="" value="{{ old('name', $user->name ?? '') }}"{{ $isShow ? ' readonly' : ''}}>
+    <input name="name" type="text" class="form-control mb-2 @error('name') is-invalid @enderror" id="name" placeholder="" value="{{ old('name', $user->name ?? '') }}">
     @error('name')
       <span class="invalid-feedback" role="alert">
         <strong>{{ $message }}</strong>
@@ -43,7 +43,7 @@
   </div>
   <div class="col-md-12">
     <label for="email" class="form-label">Email </label>
-    <input name="email" type="text" class="form-control mb-2 @error('email') is-invalid @enderror" id="email" placeholder="" value="{{ old('email', $user->email ?? '') }}"{{ $isShow ? ' readonly' : ''}}>
+    <input name="email" type="text" class="form-control mb-2 @error('email') is-invalid @enderror" id="email" placeholder="" value="{{ old('email', $user->email ?? '') }}">
     @error('email')
       <span class="invalid-feedback" role="alert">
         <strong>{{ $message }}</strong>
@@ -52,7 +52,7 @@
   </div>
   <div class="col-md-12">
     <label for="username" class="form-label">username </label>
-    <input name="username" type="text" class="form-control mb-2 @error('username') is-invalid @enderror" id="username" placeholder="" value="{{ old('username', $user->username ?? '') }}"{{ $isShow ? ' readonly' : ''}}>
+    <input name="username" type="text" class="form-control mb-2 @error('username') is-invalid @enderror" id="username" placeholder="" value="{{ old('username', $user->username ?? '') }}">
     @error('username')
       <span class="invalid-feedback" role="alert">
         <strong>{{ $message }}</strong>
@@ -64,7 +64,7 @@
     <div class="col-md-6">
       <div class="col-md-12">
         <label for="password" class="form-label"> {{ __('message.password') }} </label>
-        <input name="password" type="password" class="form-control mb-2 @error('password') is-invalid @enderror" id="password" placeholder=""{{ $isShow ? ' readonly' : ''}}>
+        <input name="password" type="password" class="form-control mb-2 @error('password') is-invalid @enderror" id="password" placeholder="">
         @error('password')
           <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -89,7 +89,7 @@
       <div class="col-md-12">
         @foreach($roles as $role)
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="role_ids[]" id="{{ 'checkbox_'.$role->id }}" value="{{ $role->id }}"{{ ($selectedRoles->contains($role->id)) ? ' checked' : '' }}{{ $isShow ? ' readonly' : ''}}>
+          <input class="form-check-input" type="radio" name="role_ids[]" id="{{ 'checkbox_'.$role->id }}" value="{{ $role->id }}"{{ ($selectedRoles->contains($role->id)) ? ' checked' : '' }}>
           <label class="form-check-label" for="{{ 'checkbox_'.$role->id }}">{{ $role->name }}</label>
         </div>
         @endforeach
@@ -98,7 +98,7 @@
   </div>
   <div class="col-md-12">
     <label for="address" class="form-label"> {{ __('message.address') }} </label>
-    <input name="address" type="text" class="form-control mb-2 @error('address') is-invalid @enderror" id="address" placeholder="" value="{{ old('address', $user->address ?? '') }}"{{ $isShow ? ' readonly' : ''}}>
+    <input name="address" type="text" class="form-control mb-2 @error('address') is-invalid @enderror" id="address" placeholder="" value="{{ old('address', $user->address ?? '') }}">
     @error('address')
       <span class="invalid-feedback" role="alert">
         <strong>{{ $message }}</strong>
@@ -130,7 +130,7 @@
   @endif
   <div class="col-md-12">
     <label for="code" class="form-label">Code </label>
-    <input name="code" type="text" class="form-control mb-2 @error('code') is-invalid @enderror" id="code" placeholder="" value="{{ old('code', $user->code ?? '') }}"{{ $isShow ? ' readonly' : ''}}>
+    <input name="code" type="text" class="form-control mb-2 @error('code') is-invalid @enderror" id="code" placeholder="" value="{{ old('code', $user->code ?? '') }}">
     @error('code')
       <span class="invalid-feedback" role="alert">
         <strong>{{ $message }}</strong>
@@ -139,7 +139,7 @@
   </div>
   <div class="col-md-12">
     <label for="social_type" class="form-label">Social Type </label>
-    <input name="social_type" type="text" class="form-control mb-2 @error('social_type') is-invalid @enderror" id="social_type" placeholder="" value="{{ old('social_type', $user->social_type ?? '') }}"{{ $isShow ? ' readonly' : ''}}>
+    <input name="social_type" type="text" class="form-control mb-2 @error('social_type') is-invalid @enderror" id="social_type" placeholder="" value="{{ old('social_type', $user->social_type ?? '') }}">
     @error('social_type')
       <span class="invalid-feedback" role="alert">
         <strong>{{ $message }}</strong>
@@ -148,7 +148,7 @@
   </div>
   <div class="col-md-12">
     <label for="social_id" class="form-label"> Social Id </label>
-    <input name="social_id" type="text" class="form-control mb-2 @error('social_id') is-invalid @enderror" id="social_id" placeholder="" value="{{ old('social_id', $user->social_id ?? '') }}"{{ $isShow ? ' readonly' : ''}}>
+    <input name="social_id" type="text" class="form-control mb-2 @error('social_id') is-invalid @enderror" id="social_id" placeholder="" value="{{ old('social_id', $user->social_id ?? '') }}">
     @error('social_id')
       <span class="invalid-feedback" role="alert">
         <strong>{{ $message }}</strong>
@@ -157,7 +157,7 @@
   </div>
   <div class="col-md-12">
     <label for="social_name" class="form-label">Social Name</label>
-    <input name="social_name" type="text" class="form-control mb-2 @error('social_name') is-invalid @enderror" id="social_name" placeholder="" value="{{ old('social_name', $user->social_name ?? '') }}"{{ $isShow ? ' readonly' : ''}}>
+    <input name="social_name" type="text" class="form-control mb-2 @error('social_name') is-invalid @enderror" id="social_name" placeholder="" value="{{ old('social_name', $user->social_name ?? '') }}">
     @error('social_name')
       <span class="invalid-feedback" role="alert">
         <strong>{{ $message }}</strong>
@@ -166,7 +166,7 @@
   </div>
   <div class="col-md-12">
     <label for="social_nickname" class="form-label">Social Nickname </label>
-    <input name="social_nickname" type="text" class="form-control mb-2 @error('social_nickname') is-invalid @enderror" id="social_nickname" placeholder="" value="{{ old('social_nickname', $user->social_nickname ?? '') }}"{{ $isShow ? ' readonly' : ''}}>
+    <input name="social_nickname" type="text" class="form-control mb-2 @error('social_nickname') is-invalid @enderror" id="social_nickname" placeholder="" value="{{ old('social_nickname', $user->social_nickname ?? '') }}">
     @error('social_nickname')
       <span class="invalid-feedback" role="alert">
         <strong>{{ $message }}</strong>
@@ -175,7 +175,7 @@
   </div>
   <div class="col-md-12">
     <label for="social_avatar" class="form-label">Social Avatar</label>
-    <input name="social_avatar" type="text" class="form-control mb-2 @error('social_avatar') is-invalid @enderror" id="social_avatar" placeholder="" value="{{ old('social_avatar', $user->social_avatar ?? '') }}"{{ $isShow ? ' readonly' : ''}}>
+    <input name="social_avatar" type="text" class="form-control mb-2 @error('social_avatar') is-invalid @enderror" id="social_avatar" placeholder="" value="{{ old('social_avatar', $user->social_avatar ?? '') }}">
     @error('social_avatar')
       <span class="invalid-feedback" role="alert">
         <strong>{{ $message }}</strong>
@@ -184,7 +184,7 @@
   </div>
   <div class="col-md-12">
     <label for="description" class="form-label">Description</label>
-    <textarea name="description" type="text" class="form-control mb-2 @error('description') is-invalid @enderror" id="description" placeholder="" value="{{ old('description', $user->description ?? '') }}"{{ $isShow ? ' readonly' : ''}}> </textarea>
+    <textarea name="description" type="text" class="form-control mb-2 @error('description') is-invalid @enderror" id="description" placeholder="" value="{{ old('description', $user->description ?? '') }}"> </textarea>
     @error('description')
       <span class="invalid-feedback" role="alert">
         <strong>{{ $message }}</strong>
@@ -201,7 +201,7 @@
     <input name="updated_at" id="updated_at" class="form-control mb-2" value="{{ $user->updated_at }}" disabled>
   </div>
   @endif
-  @if (!$isShow)
+
   <div class="row mt-3">
     <div class="d-flex justify-content-center">
       <button type="submit" class="btn btn-primary">
@@ -209,7 +209,6 @@
       </button>
     </div>
   </div>
-  @endif
 </form>
 </div>
 @endsection
