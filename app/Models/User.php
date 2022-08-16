@@ -51,7 +51,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function Roles()
     {
-        return $this->belongstoMany(UserRole::class);
+        return $this->belongstoMany(Role::class, 'user_roles');
     }
 
     public function Messages()
@@ -62,6 +62,13 @@ class User extends Authenticatable implements MustVerifyEmail
     public function hasVerifiedEmail()
     {
         return ! is_null($this->verified_at);
+    }
+
+    public function hasRoles($roles)
+    {
+        if (is_array($roles) || is_object($roles)) {
+            return $roles->intersect($this->roles)->count();
+        }
     }
 
     public function markEmailAsVerified()

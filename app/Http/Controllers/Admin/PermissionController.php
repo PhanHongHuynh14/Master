@@ -105,7 +105,6 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
-        +-
         $this->permissionRepository->deleteById($id);
 
         return redirect()->route('admin.permission.index');

@@ -49,5 +49,5 @@ return [
     'categoryid' => 'Category id',
     'categoryname' => 'Category name',
     'language' => 'Language',
-
+    'userRole' => 'Role'
 ];

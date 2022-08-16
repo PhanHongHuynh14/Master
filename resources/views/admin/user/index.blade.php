@@ -2,13 +2,14 @@
 @section('content')
 <div class="col-md-9 mb-3">
   <div class="row">
-  @if ($errors->any())
-  <div class="alert alert-danger">
-      <ul>
-          @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-          @endforeach
-      </ul>
+@if (Session::has('success'))
+    <div class="alert alert-success" role="alert">
+    {{ session('success') }}
+    </div>
+@endif
+@if (Session::has('error'))
+  <div class="alert alert-danger" role="alert">
+    {{ session('error') }}
   </div>
 @endif
         <div>
@@ -20,39 +21,49 @@
 <table class="table table-bordered">
     <thead>
       <tr>
-        <th scope="col">{{ __('message.avatar')}}</th>
         <th scope="col">{{ __('message.name')}}</th>
         <th scope="col">Email</th>
+        <th scope="col">{{ __('message.userRole')}}</th>
         <th scope="col">{{ __('message.action')}}</th>
       </tr>
     </thead>
     <tbody>
-      @if (!empty($users))
-          @foreach ($users as $user)
-              <tr>
-                <td><img width="30px" src="https://i.imgur.com/s6l2a1U.png"></td>
-                <td>{{$user['name']}}</td>
-                <td>{{$user['email']}}</td>
-                <td><button type="button" class="btn btn-primary">Edit</button> <button type="button" class="btn btn-danger">Delete</button></td>
-              </tr>
-          @endforeach
-      @endif
+        @if(!empty($users))
+        @foreach($users as $key => $user)
+        <tr>
+            <td>
+                <span class="cat-links">
+                    {{ $user->name }}
+                </span>
+            </td>
+            <td>
+                <span class="cat-links">
+                    {{ $user->email }}
+                </span>
+            </td>
+            <td>
+                <select name="" id="">
+                    @foreach($user->roles as $role)
+                <option> {{ $role->name }} </option>
+                    @endforeach
+                </select>
+            </td>
+            <td>
+                <a href="{{ route('admin.user.show', $user->id) }}" class="btn btn-success"> {{ __('message.show') }} </a>
+                <a href="{{ route('admin.user.edit', $user->id) }}" class="btn btn-primary"> {{ __('message.edit') }} </a>
+                <form class="d-inline" onclick="return confirm('Do you want to delete?')" method="post" action="{{ route('admin.user.destroy', $user->id) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger"> {{ __('message.delete')}} </button>
+                </form>
+            </td>
+        </tr>
+        @endforeach
+        @endif
     </tbody>
   </table>
-  <div class="col-md-12 text-center">
-    <ul class="pagination">
-      <li class="page-item disabled">
-        <a class="page-link"><</a>
-      </li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item active" aria-current="page">
-        <a class="page-link" href="#">2</a>
-      </li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item">
-        <a class="page-link" href="#">></a>
-      </li>
-    </ul>
-  </div>
+
+  {{ $users->links() }}
+
 </div>
 @endsection
