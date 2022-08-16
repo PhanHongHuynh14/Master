@@ -18,7 +18,7 @@ class UserController extends Controller
 
     protected $userRepository;
 
-    public function __construct(MailService $mailService, RoleRepository $roleRepository, userRepository $userRepository)
+    public function __construct(MailService $mailService, RoleRepository $roleRepository, UserRepository $userRepository)
     {
         $this->mailService = $mailService;
         $this->userRepository = $userRepository;
@@ -104,7 +104,7 @@ class UserController extends Controller
             abort(404);
         }
 
-        return view('admin.user.edit', [
+        return view('admin.user.form', [
             'user' => $user,
             'roles' => $this->roleRepository->getAll(),
             'isShow' => false,
@@ -113,7 +113,7 @@ class UserController extends Controller
 
     public function update(UserRequest $request, $id)
     {
-        DB::begintransaction();
+        DB::beginTransaction();
 
         try {
             $user = $this->userRepository->save($request->validated(), ['id' => $id]);
@@ -122,21 +122,21 @@ class UserController extends Controller
 
             return redirect()->route('admin.user.form', $id)->with(
                 'success',
-                __('massage.success')
+                'Edit completed successfully.'
             );
-        } catch (Exception) {
+        } catch (\Exception) {
             DB::rollback();
 
             return redirect()->back()->with(
                 'error',
-                __('message.error')
+                'Exception occured. Please try again later.'
             );
         }
     }
 
     public function destroy($id)
     {
-        DB::begintransaction();
+        DB::beginTransaction();
 
         try {
             $this->userRepository->findById($id)->roles()->detach();
@@ -144,19 +144,23 @@ class UserController extends Controller
             DB::commit();
 
             return redirect()->route('admin.user.index')->with(
-                'succes',
-                __('message.deletesuccess')
+                'success',
+                'Deletion completed successfully.'
             );
         } catch (\Exception) {
             DB::rollback();
 
             return redirect()->back()->with(
                 'error',
-                __('mesage.error')
+                'Exception occured. Please try again later'
             );
         }
     }
 
+    private function getUsers()
+    {
+        return collect(Session::get('users'));
+    }
 
     public function getMailForm()
     {

@@ -2,7 +2,12 @@
 @section('content')
 <div class="col-md-9 mb-3">
   <div class="row">
-  @if (Session::has('error'))
+@if (Session::has('success'))
+    <div class="alert alert-success" role="alert">
+    {{ session('success') }}
+    </div>
+@endif
+@if (Session::has('error'))
   <div class="alert alert-danger" role="alert">
     {{ session('error') }}
   </div>
@@ -24,7 +29,7 @@
     </thead>
     <tbody>
         @if(!empty($users))
-        @foreach($users as $user)
+        @foreach($users as $key => $user)
         <tr>
             <td>
                 <span class="cat-links">
@@ -46,7 +51,7 @@
             <td>
                 <a href="{{ route('admin.user.show', $user->id) }}" class="btn btn-success"> {{ __('message.show') }} </a>
                 <a href="{{ route('admin.user.edit', $user->id) }}" class="btn btn-primary"> {{ __('message.edit') }} </a>
-                <form class="d-inline" method="post" action="{{ route('admin.role.destroy', $role->id) }}">
+                <form class="d-inline" method="post" action="{{ route('admin.user.destroy', $user->id) }}">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger"> {{ __('message.delete')}} </button>

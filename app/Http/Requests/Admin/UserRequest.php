@@ -53,26 +53,7 @@ class UserRequest extends FormRequest
             ],
             'role_ids' => [
                 'required',
-                'array',
             ],
-            'address'=> 'nullable|max:255',
-            'school_id' => 'nullable|exists:schools,id',
-            'type' => 'nullable',
-            'parent_id' => 'nullable|exists:users,id',
-            'closed' => 'nullable|boolean',
-            'code' => [
-                'nullable',
-                Rule::unique('users')->ignore($this->user),
-            ],
-            'social_type' => 'nullable|numeric',
-            'social_id' => [
-                'nullable',
-                Rule::unique('users')->ignore($this->user),
-            ],
-            'social_name' => 'nullable',
-            'social_nickname' => 'nullable',
-            'social_avatar' => 'nullable|url',
-            'description' => 'nullable',
 
         ];
     }
