@@ -51,7 +51,7 @@
             <td>
                 <a href="{{ route('admin.user.show', $user->id) }}" class="btn btn-success"> {{ __('message.show') }} </a>
                 <a href="{{ route('admin.user.edit', $user->id) }}" class="btn btn-primary"> {{ __('message.edit') }} </a>
-                <form class="d-inline" method="post" action="{{ route('admin.user.destroy', $user->id) }}">
+                <form class="d-inline" onclick="return confirm('Do you want to delete?')" method="post" action="{{ route('admin.user.destroy', $user->id) }}">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger"> {{ __('message.delete')}} </button>

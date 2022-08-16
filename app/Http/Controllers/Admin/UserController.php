@@ -48,7 +48,6 @@ class UserController extends Controller
     {
         return view('admin.user.form', [
             'roles' => $this->roleRepository->getAll(),
-            'isShow' => false,
         ]);
     }
 
@@ -64,7 +63,7 @@ class UserController extends Controller
         $data['verified_at'] = now();
         $data['type'] = User::TYPES['admin'];
         $data['password'] = Hash::make($data['password']);
-        DB::begintransaction();
+        DB::beginTransaction();
 
         try {
             $user = $this->userRepository->save($data);
@@ -118,11 +117,11 @@ class UserController extends Controller
             $user->roles()->sync($request->input('role_ids'));
             DB::commit();
 
-            return redirect()->route('admin.user.show', $id)->with(
+            return redirect()->route('admin.user.index', $id)->with(
                 'success',
                 'Edit completed successfully.'
             );
-        } catch (\Exception) {
+        } catch (Exception) {
             DB::rollback();
 
             return redirect()->back()->with(
