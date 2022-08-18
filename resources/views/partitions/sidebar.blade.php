@@ -28,6 +28,7 @@
                 </h2>
                   <a target="_top" href="{{ route('admin.product.store') }}">{{ __('message.productmanagement')}}</a>
                   <a href="{{ route('admin.category.store') }}">{{ __('message.categorymanagement')}}</a>
+                  <a href="{{ route('admin.question.store') }}">{{ __('question.questionmanagement')}}</a>
             </div>
 
         </div>

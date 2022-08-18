@@ -17,6 +17,7 @@ class UserController extends Controller
     public $listuser;
 
     protected $userRepository;
+    protected $roleRepository;
 
     public function __construct(MailService $mailService, RoleRepository $roleRepository, UserRepository $userRepository)
     {

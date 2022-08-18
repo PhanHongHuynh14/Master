@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Exam extends Model
 {
     use HasFactory;
 
@@ -13,12 +13,15 @@ class Category extends Model
         'id',
         'name',
         'slug',
-    ];
+    ]
 
-    public function questions(){
-        return $this->hasMany(Question::class);
+    public function categories()
+    {
+        return $this->belongTo(Category::class);
     }
-    public function exams(){
-        return $this->hasMany(Exams::class);
+
+    public function questions()
+    {
+        return $this->belongToMany(Question::class);
     }
 }
