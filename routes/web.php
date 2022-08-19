@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SendmailController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\QuestionController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
@@ -34,6 +35,7 @@ Route::name('admin.')->prefix('admin')->middleware(['verified', 'verifyadmin'])-
     Route::resource('category', CategoryController::class);
     Route::resource('mails', SendmailController::class);
     Route::resource('permission-group', PermissionGroupController::class);
+    Route::resource('question', QuestionController::class);
 });
 
 Auth::routes(['verify' => true]);
