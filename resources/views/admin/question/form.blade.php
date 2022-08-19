@@ -1,7 +1,8 @@
 @extends('layouts.admin.master')
 @section('content')
 
-@if (empty($question))
+<div class="col-md-9">
+    @if (empty($question))
 <form class="col-md-9" method="post" action="{{ route('admin.question.store') }}">
     @csrf
     <div class="row">
@@ -141,4 +142,5 @@
     </div>
   </div>
 </form>
+</div>
 @endsection
