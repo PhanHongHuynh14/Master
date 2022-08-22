@@ -15,10 +15,12 @@ class Category extends Model
         'slug',
     ];
 
-    public function questions(){
+    public function questions()
+    {
         return $this->hasMany(Question::class);
     }
-    public function exams(){
+    public function exams()
+    {
         return $this->hasMany(Exams::class);
     }
 }

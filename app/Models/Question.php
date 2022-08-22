@@ -18,14 +18,16 @@ class Question extends Model
         'answer',
     ];
 
-    public function answers(){
+    public function answers()
+    {
         return $this->hasMany(Answer::class);
     }
-    public function categories(){
+    public function categories()
+    {
         return $this->belongTo(Category::class);
     }
-    public function exams(){
+    public function exams()
+    {
         return $this->belongToMany(Exam::class, 'exam_question');
     }
 }
-

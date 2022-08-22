@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\Admin\QuestionRequest;
 use App\Repositories\Admin\Question\QuestionRepositoryInterface as QuestionRepository;
 use App\Repositories\Admin\Category\CategoryRepositoryInterface as CategoryRepository;
 use App\Repositories\Admin\Answer\AnswerRepositoryInterface as AnswerRepository;
-use Illuminate\Support\Facades\DB;
 
 class QuestionController extends Controller
 {
@@ -16,7 +14,7 @@ class QuestionController extends Controller
     protected $questionRepository;
     protected $answerRepository;
 
-    public function __construct(CategoryRepository $categoryRepository, QuestionRepository $questionRepository, AnswerRepository $answerRepository )
+    public function __construct(CategoryRepository $categoryRepository, QuestionRepository $questionRepository, AnswerRepository $answerRepository)
     {
         $this->categoryRepository = $categoryRepository;
         $this->questionRepository = $questionRepository;
@@ -87,8 +85,7 @@ class QuestionController extends Controller
             'success',
             'Create completed successfully.'
         );
-
-        }
+    }
     /**
      * Display the specified resource.
      *

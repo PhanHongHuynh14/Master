@@ -14,5 +14,4 @@ return [
     'answer_3' => 'answer_3',
     'answer_4' => 'answer_4',
 
-]
-?>
+];
