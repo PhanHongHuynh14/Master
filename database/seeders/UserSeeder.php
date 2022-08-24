@@ -19,10 +19,10 @@ class UserSeeder extends Seeder
     {
         User::factory()
         ->state([
-            'name' => 'Default Admin',
-            'email' => 'admin@example.org',
-            'username' => 'admin',
-            'password' => Hash::make('123@123'),
+            'name' => 'root',
+            'email' => 'root@gmail.com',
+            'username' => 'root',
+            'password' => Hash::make('123'),
             'type' => User::TYPES['admin'],
             'verified_at' => now(),
         ])

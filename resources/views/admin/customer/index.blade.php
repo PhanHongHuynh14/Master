@@ -58,7 +58,6 @@
                 </div>
                 <thead>
                 <tr>
-                    <th scope="col">STT</th>
                     <th scope="col">Loại khách</th>
                     <th scope="col">Mã KH</th>
                     <th scope="col">Thông tin KH</th>
@@ -69,7 +68,62 @@
                     <th scope="col">Thao tác</th>
                 </tr>
             </thead>
+            @if(!empty($customers))
+            @foreach($customers as $customer)
+            <tr>
+                <td>
+                  <select name="" id="">
+                    @foreach($customer->roles as $role)
+                  <option> {{ $role->name }} </option>
+                    @endforeach
+                  </select>
+                </td>
+                <td>
+                    <span class="cat-links">
+                        {{ $customer->makh }}
+                    </span>
+                </td>
+                <td>
+                    <span class="cat-links">
+                        {{ $customer->name }}
+                    </span>
+                </td>
+                <td>
+                    <span class="cat-links">
+                        {{ $customer->address }}
+                    </span>
+                </td>
+                <td>
+                    <span class="cat-links">
+                    {{ $customer->phone }}
+                    </span>
+                </td>
+                <td>
+                    <span class="cat-links">
+                    {{ $customer->email }}
+                    </span>
+                </td>
+                <td>
+                  <select name="" id="">
+                    @foreach($customer->users as $user)
+                  <option> {{ $user->name }} </option>
+                    @endforeach
+                  </select>
+                </td>
+                <td>
+                    <a href="{{ route('admin.customer.edit', $customer->id) }}" style="width:50px" class="btn btn-primary"> {{__('message.edit')}} </a>
+                    <form class="d-inline" onclick="return confirm('Do you want to delete?')" method="post" action="{{ route('admin.customer.destroy', $customer->id) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button style="width: 70px; margin-left:0px" type="submit" class="btn btn-danger"> {{ __('message.delete')}} </button>
+                    </form>
+                </td>
+            </tr>
+            @endforeach
+            @endif
             </div>
         </table>
-</div>
+
+        {{ $customers->links()}}
+      </div>
 @endsection
