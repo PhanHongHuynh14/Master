@@ -13,7 +13,7 @@ class Exam extends Model
         'id',
         'name',
         'slug',
-    ]
+    ];
 
     public function categories()
     {

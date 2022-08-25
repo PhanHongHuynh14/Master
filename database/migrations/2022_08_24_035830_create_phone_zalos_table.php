@@ -12,14 +12,11 @@ return new class () extends Migration {
      */
     public function up()
     {
-        Schema::create('answers', function (Blueprint $table) {
+        Schema::create('phone_zalos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('content');
-            $table->unsignedBigInteger('question_id');
-            $table->boolean('correct');
-            $table->foreign('question_id')->references('id')->on('questions')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
+            $table->string('phone_zalo');
+            $table->unsignedBigInteger('customer_id');
+            $table->foreign('customer_id')->references('id')->on('customers')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class () extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('answers');
+        Schema::dropIfExists('phone_zalos');
     }
 };
